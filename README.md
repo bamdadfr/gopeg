@@ -1,0 +1,3 @@
+# gopeg
+
+Personal ffmpeg shorthands
