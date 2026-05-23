@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/bamdadfr/gopeg/compare/v1.0.0...v1.1.0) (2026-05-23)
+
+
+### Features
+
+* add archive preset ([e08a332](https://github.com/bamdadfr/gopeg/commit/e08a332a50df4b057238c21fee289288c638aae6))
+* add preset sorting ([69d555b](https://github.com/bamdadfr/gopeg/commit/69d555b1399aa4f9a8c6ca96f61608af76a52493))
+
 # 1.0.0 (2026-05-22)
 
 
