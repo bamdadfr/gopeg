@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"sort"
 	"strings"
 
 	"fyne.io/fyne/v2"
@@ -115,9 +116,15 @@ func run(args []string) {
 
 func main() {
 	presets := []preset.Preset{
-		preset.Archive(),
 		preset.Remux(),
+		preset.Archive(),
 	}
+
+	sort.Slice(presets, func(i int, j int) bool {
+		a := presets[i].Name
+		b := presets[j].Name
+		return a < b
+	})
 
 	if _, err := exec.LookPath("ffmpeg"); err != nil {
 		log.Fatal(err)
