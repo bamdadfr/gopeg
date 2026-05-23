@@ -3,7 +3,7 @@ package preset
 func Archive() Preset {
 	return Preset{
 		Name:        "Archive",
-		Description: "Near losless quality. H.264 codec. CRF 4. Maximum quality. Slow encoding.",
+		Description: "Near lossless quality. H.264 codec. CRF 4. Maximum quality. Slow encoding.",
 		Accept:      []string{},
 		Target:      ".mp4",
 		BuildArgs: func(inputPath string, outputPath string) []string {
