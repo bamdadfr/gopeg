@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/bamdadfr/gopeg/compare/v1.1.0...v1.1.1) (2026-05-23)
+
+
+### Bug Fixes
+
+* typo ([ab14585](https://github.com/bamdadfr/gopeg/commit/ab1458518e553169e59dfd00736158f214fa63bd))
+
 # [1.1.0](https://github.com/bamdadfr/gopeg/compare/v1.0.0...v1.1.0) (2026-05-23)
 
 
