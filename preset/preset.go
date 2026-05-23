@@ -17,15 +17,12 @@ type Preset struct {
 }
 
 func (p Preset) IsValidInput(inputPath string) bool {
-	ok := false
-
-	ext := filepath.Ext(inputPath)
-
-	if slices.Contains(p.Accept, ext) {
-		ok = true
+	if len(p.Accept) == 0 {
+		return true
 	}
 
-	return ok
+	ext := filepath.Ext(inputPath)
+	return slices.Contains(p.Accept, ext)
 }
 
 func (p Preset) OutputPath(inputPath string) string {

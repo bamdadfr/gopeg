@@ -115,6 +115,7 @@ func run(args []string) {
 
 func main() {
 	presets := []preset.Preset{
+		preset.Archive(),
 		preset.Remux(),
 	}
 
