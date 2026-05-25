@@ -1,7 +1,8 @@
 package main
 
 import (
-	"sort"
+	"slices"
+	"strings"
 
 	"fyne.io/fyne/v2/container"
 
@@ -20,10 +21,8 @@ func main() {
 		preset.Interpolate4x(),
 	}
 
-	sort.Slice(presets, func(i int, j int) bool {
-		a := presets[i].Name
-		b := presets[j].Name
-		return a < b
+	slices.SortFunc(presets, func(a, b preset.Preset) int {
+		return strings.Compare(a.Name, b.Name)
 	})
 
 	validateBinaries()
