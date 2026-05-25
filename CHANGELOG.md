@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/bamdadfr/gopeg/compare/v1.2.0...v1.3.0) (2026-05-25)
+
+
+### Features
+
+* add status bar and bin detection ([7d7a3ab](https://github.com/bamdadfr/gopeg/commit/7d7a3abc5771bf3649247f52450676194762dbca))
+
 # [1.2.0](https://github.com/bamdadfr/gopeg/compare/v1.1.1...v1.2.0) (2026-05-25)
 
 
