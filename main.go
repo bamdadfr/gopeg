@@ -7,6 +7,7 @@ import (
 	"runtime"
 	"sort"
 	"strings"
+	"time"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -27,6 +28,7 @@ var (
 	video2xBinaryWindows = "C:\\Program Files\\Video2X Qt6\\video2x.exe"
 	video2xFound         = false
 	isWindows            = runtime.GOOS == "windows"
+	isRunning            = false
 	statusText           = binding.NewString()
 	icons                = map[string]string{
 		"success": "✅",
@@ -106,6 +108,16 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
+		if isRunning {
+			updateStatus("Already running!")
+
+			time.AfterFunc(2*time.Second, func() {
+				updateStatus("Computing...")
+			})
+
+			return
+		}
+
 		inputPath := uris[0].Path()
 		outputPath := selectedPreset.OutputPath(inputPath)
 
@@ -131,22 +143,28 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 					}
 
 					args = append([]string{args[0], "-y"}, args[1:]...)
-					updateStatus("Computing...")
-					run(args)
-					updateStatus("Done!")
+
+					go func() {
+						run(args)
+						w.Canvas().Refresh(w.Content())
+					}()
 				},
 				w,
 			)
 			return
 		}
 
-		updateStatus("Computing...")
-		run(args)
-		updateStatus("Done!")
+		go func() {
+			run(args)
+			w.Canvas().Refresh(w.Content())
+		}()
 	})
 }
 
 func run(args []string) {
+	updateStatus("Computing...")
+	isRunning = true
+
 	binary := args[0]
 
 	if binary == "video2x" && isWindows {
@@ -164,7 +182,8 @@ func run(args []string) {
 		return
 	}
 
-	log.Println("Done.")
+	updateStatus("Done!")
+	isRunning = false
 }
 
 func validateBinaries() {
