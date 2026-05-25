@@ -7,8 +7,13 @@ import (
 )
 
 func run(args []string) {
+	if !isRunning.CompareAndSwap(false, true) {
+		return
+	}
+
+	defer isRunning.Store(false)
+
 	updateStatus("Computing...")
-	isRunning = true
 
 	var binaryPath string
 
@@ -32,5 +37,4 @@ func run(args []string) {
 	}
 
 	updateStatus("Done!")
-	isRunning = false
 }

@@ -115,7 +115,7 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
-		if isRunning {
+		if isRunning.Load() {
 			updateStatus("Already running!")
 
 			time.AfterFunc(2*time.Second, func() {

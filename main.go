@@ -10,6 +10,7 @@ import (
 
 func main() {
 	updateStatus("Loading...")
+	isRunning.Store(false)
 
 	presets := []preset.Preset{
 		preset.Remux(),
