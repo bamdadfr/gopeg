@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/bamdadfr/gopeg/compare/v1.3.0...v1.4.0) (2026-05-25)
+
+
+### Features
+
+* add RIFE 4x preset ([a63d885](https://github.com/bamdadfr/gopeg/commit/a63d88567aa0b9a7e228f9e82db1cddde6b63faf))
+
+
+### Performance Improvements
+
+* extract status setter ([fb160d7](https://github.com/bamdadfr/gopeg/commit/fb160d73db8866c856f29ae49a34755c303e81c1))
+
 # [1.3.0](https://github.com/bamdadfr/gopeg/compare/v1.2.0...v1.3.0) (2026-05-25)
 
 
