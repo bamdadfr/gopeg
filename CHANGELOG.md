@@ -1,3 +1,12 @@
+## [1.5.5](https://github.com/bamdadfr/gopeg/compare/v1.5.4...v1.5.5) (2026-05-25)
+
+
+### Performance Improvements
+
+* extract binary to its own struct ([f833a76](https://github.com/bamdadfr/gopeg/commit/f833a7666a34816a552cdac44093bb4629f6e977))
+* refactor command and args ([8ef0909](https://github.com/bamdadfr/gopeg/commit/8ef09090a5b332b0693899ee2d14be2937126e9d))
+* relocate preset list creation ([6ecea49](https://github.com/bamdadfr/gopeg/commit/6ecea496f608c4f2a5ad099edc4d7db3a4b6ee3b))
+
 ## [1.5.4](https://github.com/bamdadfr/gopeg/compare/v1.5.3...v1.5.4) (2026-05-25)
 
 
