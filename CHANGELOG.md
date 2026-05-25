@@ -1,3 +1,11 @@
+## [1.5.4](https://github.com/bamdadfr/gopeg/compare/v1.5.3...v1.5.4) (2026-05-25)
+
+
+### Bug Fixes
+
+* replace text objects with labels and use theme to apply font size ([3eb5455](https://github.com/bamdadfr/gopeg/commit/3eb5455a7c20ae38cbdc8e4bc821d85b2956ed86))
+* use new sorting native packages ([d72f7c5](https://github.com/bamdadfr/gopeg/commit/d72f7c583df2b9439ae2e030a63517de495b4ccf))
+
 ## [1.5.3](https://github.com/bamdadfr/gopeg/compare/v1.5.2...v1.5.3) (2026-05-25)
 
 
