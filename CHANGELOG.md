@@ -1,3 +1,18 @@
+## [1.5.2](https://github.com/bamdadfr/gopeg/compare/v1.5.1...v1.5.2) (2026-05-25)
+
+
+### Bug Fixes
+
+* display cmd error in status ([a4fe789](https://github.com/bamdadfr/gopeg/commit/a4fe789b9bde55caabe40824e2815ea98919c1a3))
+* extract binary name getter ([44401d4](https://github.com/bamdadfr/gopeg/commit/44401d451c83b483ab39f510b7474fc184e9421a))
+* typo ([8ddce35](https://github.com/bamdadfr/gopeg/commit/8ddce358305508d87a15944200c6f742cd4f3093))
+* use atomic isRunning env var ([3e962fd](https://github.com/bamdadfr/gopeg/commit/3e962fd6acfb3f633376e41098049878c0106a55))
+
+
+### Performance Improvements
+
+* split main package ([af3b0e7](https://github.com/bamdadfr/gopeg/commit/af3b0e7108ba6cc9b59d296ea82054760cbc49ea))
+
 ## [1.5.1](https://github.com/bamdadfr/gopeg/compare/v1.5.0...v1.5.1) (2026-05-25)
 
 
