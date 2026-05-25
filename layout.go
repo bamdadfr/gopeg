@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
 	"strings"
 	"time"
 
@@ -10,7 +9,9 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
@@ -21,40 +22,52 @@ func createWindow() fyne.Window {
 	a := app.New()
 	a.Settings().SetTheme(theme.DefaultTheme())
 
-	if err := os.Setenv("FYNE_SCALE", "1.5"); err != nil {
-		log.Fatal(err)
-	}
-
 	w := a.NewWindow("gopeg")
 	w.Resize(fyne.NewSize(600, 400))
 
 	return w
 }
 
+func createText(content string) *canvas.Text {
+	text := canvas.NewText(content, nil)
+	text.TextSize = 18
+	return text
+}
+
 func createStatusBar() *fyne.Container {
-	var ffmpegWidget fyne.Widget
-	var video2xWidget fyne.Widget
+	var ffmpegText *canvas.Text
+	var video2xText *canvas.Text
 
 	if ffmpegFound {
-		ffmpegWidget = widget.NewLabel("ffmpeg " + icons["success"])
+		ffmpegText = createText("ffmpeg " + icons["success"])
 	} else {
-		ffmpegWidget = widget.NewLabel("ffmpeg " + icons["error"])
+		ffmpegText = createText("ffmpeg " + icons["error"])
 	}
 
 	if video2xFound {
-		video2xWidget = widget.NewLabel("video2x " + icons["success"])
+		video2xText = createText("video2x " + icons["success"])
 	} else {
-		video2xWidget = widget.NewLabel("video2x " + icons["error"])
+		video2xText = createText("video2x " + icons["error"])
 	}
 
-	statusBar := container.NewHBox(
-		widget.NewLabelWithData(statusText),
+	statusCanvasText := createText("")
+	statusText.AddListener(binding.NewDataListener(func() {
+		val, err := statusText.Get()
+		if err != nil {
+			return
+		}
+		statusCanvasText.Text = val
+		statusCanvasText.Refresh()
+	}))
+
+	container := container.NewHBox(
+		statusCanvasText,
 		layout.NewSpacer(),
-		ffmpegWidget,
-		video2xWidget,
+		ffmpegText,
+		video2xText,
 	)
 
-	return statusBar
+	return container
 }
 
 func createList(presets []preset.Preset) *widget.List {
@@ -64,14 +77,19 @@ func createList(presets []preset.Preset) *widget.List {
 		},
 		func() fyne.CanvasObject {
 			return container.NewVBox(
-				widget.NewLabel(""),
-				widget.NewLabel(""),
+				createText(""),
+				createText(""),
 			)
 		},
 		func(i widget.ListItemID, o fyne.CanvasObject) {
 			c := o.(*fyne.Container)
-			c.Objects[0].(*widget.Label).SetText(presets[i].Name)
-			c.Objects[1].(*widget.Label).SetText(presets[i].Description)
+
+			name := c.Objects[0].(*canvas.Text)
+			name.Text = presets[i].Name
+			name.TextStyle.Bold = true
+
+			description := c.Objects[1].(*canvas.Text)
+			description.Text = presets[i].Description
 		},
 	)
 
