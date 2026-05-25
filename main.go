@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 	"sort"
 	"strings"
 
@@ -20,10 +21,14 @@ import (
 )
 
 var (
-	ffmpegFound  = false
-	video2xFound = false
-	statusText   = binding.NewString()
-	icons        = map[string]string{
+	ffmpegBinary         = "ffmpeg"
+	ffmpegFound          = false
+	video2xBinary        = "video2x"
+	video2xBinaryWindows = "C:\\Program Files\\Video2X Qt6\\video2x.exe"
+	video2xFound         = false
+	isWindows            = runtime.GOOS == "windows"
+	statusText           = binding.NewString()
+	icons                = map[string]string{
 		"success": "✅",
 		"error":   "❌",
 	}
@@ -142,7 +147,13 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 }
 
 func run(args []string) {
-	cmd := exec.Command(args[0], args[1:]...)
+	binary := args[0]
+
+	if binary == "video2x" && isWindows {
+		binary = video2xBinaryWindows
+	}
+
+	cmd := exec.Command(binary, args[1:]...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -157,11 +168,15 @@ func run(args []string) {
 }
 
 func validateBinaries() {
-	if _, err := exec.LookPath("ffmpeg"); err == nil {
+	if isWindows {
+		video2xBinary = "C:\\Program Files\\Video2X Qt6\\video2x.exe"
+	}
+
+	if _, err := exec.LookPath(ffmpegBinary); err == nil {
 		ffmpegFound = true
 	}
 
-	if _, err := exec.LookPath("video2x"); err == nil {
+	if _, err := exec.LookPath(video2xBinary); err == nil {
 		video2xFound = true
 	}
 }
