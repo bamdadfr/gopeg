@@ -1,9 +1,6 @@
 package main
 
 import (
-	"slices"
-	"strings"
-
 	"fyne.io/fyne/v2/container"
 
 	"gopeg/preset"
@@ -12,18 +9,7 @@ import (
 func main() {
 	updateStatus("Loading...")
 	isRunning.Store(false)
-
-	presets := []preset.Preset{
-		preset.Remux(),
-		preset.Archive(),
-		preset.DecodeAndLoop(),
-		preset.Upscale4x(),
-		preset.Interpolate4x(),
-	}
-
-	slices.SortFunc(presets, func(a, b preset.Preset) int {
-		return strings.Compare(a.Name, b.Name)
-	})
+	presets := preset.List()
 
 	validateBinaries()
 

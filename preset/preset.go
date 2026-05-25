@@ -17,6 +17,22 @@ type Preset struct {
 	Args        func(inputPath string, outputPath string) []string
 }
 
+func List() []Preset {
+	presets := []Preset{
+		Remux(),
+		Archive(),
+		DecodeAndLoop(),
+		Upscale4x(),
+		Interpolate4x(),
+	}
+
+	slices.SortFunc(presets, func(a, b Preset) int {
+		return strings.Compare(a.Name, b.Name)
+	})
+
+	return presets
+}
+
 func (p Preset) IsValidInput(inputPath string) bool {
 	if len(p.Accept) == 0 {
 		return true
