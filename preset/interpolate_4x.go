@@ -3,6 +3,7 @@ package preset
 func Interpolate4x() Preset {
 	return Preset{
 		Name:        "RIFE interpolate 4x",
+		Command:     "video2x",
 		Description: "Frame interpolation via video2x RIFE.",
 		Accept:      []string{},
 		OutputPath: func(inputPath string) string {
@@ -10,7 +11,14 @@ func Interpolate4x() Preset {
 			return base + "_rife_4x.mov"
 		},
 		Args: func(inputPath string, outputPath string) []string {
-			return []string{"video2x", "-i", inputPath, "-o", outputPath, "-p", "rife", "-m", "4", "-c", "prores_ks", "-e", "profile=4"}
+			return []string{
+				"-i", inputPath,
+				"-o", outputPath,
+				"-p", "rife",
+				"-m", "4",
+				"-c", "prores_ks",
+				"-e", "profile=4",
+			}
 		},
 	}
 }

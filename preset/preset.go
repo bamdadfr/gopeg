@@ -10,6 +10,7 @@ import (
 
 type Preset struct {
 	Name        string
+	Command     string
 	Description string
 	Accept      []string // pass empty for wildcard
 	OutputPath  func(inputPath string) string
@@ -31,11 +32,6 @@ func (p Preset) IsExistPath(path string) bool {
 	}
 
 	return false
-}
-
-func (p Preset) Binary() string {
-	args := p.Args("", "")
-	return args[0]
 }
 
 func pathBaseName(inputPath string) string {
