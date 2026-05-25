@@ -11,9 +11,10 @@ import (
 type Preset struct {
 	Name        string
 	Description string
-	Accept      []string
+	Accept      []string // pass empty for wildcard
 	Target      string
-	BuildArgs   func(inputPath string, outputPath string) []string
+	OutputPath  func(inputPath string) string
+	Args        func(inputPath string, outputPath string) []string
 }
 
 func (p Preset) IsValidInput(inputPath string) bool {
@@ -25,16 +26,16 @@ func (p Preset) IsValidInput(inputPath string) bool {
 	return slices.Contains(p.Accept, ext)
 }
 
-func (p Preset) OutputPath(inputPath string) string {
-	ext := filepath.Ext(inputPath)
-	base := strings.TrimSuffix(inputPath, ext)
-	return base + p.Target
-}
-
 func (p Preset) IsExistPath(path string) bool {
 	if _, err := os.Stat(path); err == nil {
 		return true
 	}
 
 	return false
+}
+
+func pathBaseName(inputPath string) string {
+	ext := filepath.Ext(inputPath)
+	base := strings.TrimSuffix(inputPath, ext)
+	return base
 }

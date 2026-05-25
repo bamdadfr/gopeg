@@ -78,17 +78,16 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
-		args := selectedPreset.BuildArgs(inputPath, outputPath)
-		log.Println("ffmpeg args:", args)
+		args := selectedPreset.Args(inputPath, outputPath)
+		log.Println("command:", args)
 
 		if selectedPreset.IsExistPath(outputPath) {
-			log.Println("lol")
 			dialog.ShowConfirm("Output file exists!", "The output path already exists. Overwrite?", func(overwrite bool) {
 				if !overwrite {
 					return
 				}
 
-				args = append([]string{"-y"}, args...)
+				args = append([]string{args[0], "-y"}, args[1:]...)
 				run(args)
 			},
 				w)
@@ -100,7 +99,7 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 }
 
 func run(args []string) {
-	cmd := exec.Command("ffmpeg", args...)
+	cmd := exec.Command(args[0], args[1:]...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
@@ -114,10 +113,22 @@ func run(args []string) {
 	log.Println("Done.")
 }
 
+func validateBinaries() {
+	if _, err := exec.LookPath("ffmpeg"); err != nil {
+		log.Fatal(err)
+	}
+
+	if _, err := exec.LookPath("video2x"); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
 	presets := []preset.Preset{
 		preset.Remux(),
 		preset.Archive(),
+		preset.DecodeAndLoop(),
+		preset.Upscale4x(),
 	}
 
 	sort.Slice(presets, func(i int, j int) bool {
@@ -126,9 +137,7 @@ func main() {
 		return a < b
 	})
 
-	if _, err := exec.LookPath("ffmpeg"); err != nil {
-		log.Fatal(err)
-	}
+	validateBinaries()
 
 	w := createWindow()
 	list := createList(w, presets)
