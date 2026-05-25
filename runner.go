@@ -33,6 +33,7 @@ func run(args []string) {
 
 	if err := cmd.Run(); err != nil {
 		log.Println("Error:", err)
+		updateStatus("Error:" + err.Error())
 		return
 	}
 
