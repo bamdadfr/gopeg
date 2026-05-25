@@ -64,6 +64,13 @@ func createList(presets []preset.Preset) *widget.List {
 	return list
 }
 
+func updateStatus(text string) {
+	err := statusText.Set(text)
+	if err != nil {
+		log.Println("Status error:", err)
+	}
+}
+
 func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) {
 	var selectedPreset *preset.Preset // default value is nil
 
@@ -73,24 +80,24 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 
 	w.SetOnDropped(func(pos fyne.Position, uris []fyne.URI) {
 		if len(uris) == 0 {
-			statusText.Set("No file detected!")
+			updateStatus("No file detected!")
 			return
 		}
 
 		if selectedPreset == nil {
-			statusText.Set("No preset selected!")
+			updateStatus("No preset selected!")
 			return
 		}
 
 		dumbArgs := selectedPreset.Args("", "")
 
 		if dumbArgs[0] == "ffmpeg" && !ffmpegFound {
-			statusText.Set("ffmpeg not found!")
+			updateStatus("ffmpeg not found!")
 			return
 		}
 
 		if dumbArgs[0] == "video2x" && !video2xFound {
-			statusText.Set("video2x not found!")
+			updateStatus("video2x not found!")
 			return
 		}
 
@@ -119,18 +126,18 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 					}
 
 					args = append([]string{args[0], "-y"}, args[1:]...)
-					statusText.Set("Computing...")
+					updateStatus("Computing...")
 					run(args)
-					statusText.Set("Done!")
+					updateStatus("Done!")
 				},
 				w,
 			)
 			return
 		}
 
-		statusText.Set("Computing...")
+		updateStatus("Computing...")
 		run(args)
-		statusText.Set("Done!")
+		updateStatus("Done!")
 	})
 }
 
@@ -186,7 +193,7 @@ func createStatusBar() *fyne.Container {
 }
 
 func main() {
-	statusText.Set("Loading...")
+	updateStatus("Loading...")
 
 	presets := []preset.Preset{
 		preset.Remux(),
@@ -210,7 +217,7 @@ func main() {
 	w.SetContent(root)
 
 	handleDropEvent(w, list, presets)
-	statusText.Set("Ready")
+	updateStatus("Ready")
 
 	w.ShowAndRun()
 }
