@@ -1,3 +1,11 @@
+## [1.5.3](https://github.com/bamdadfr/gopeg/compare/v1.5.2...v1.5.3) (2026-05-25)
+
+
+### Bug Fixes
+
+* improve font size ([63e9e37](https://github.com/bamdadfr/gopeg/commit/63e9e37e8bbb28637f34c65cb93af5656788348f))
+* remove UI refresh from go routine ([c9a6c6b](https://github.com/bamdadfr/gopeg/commit/c9a6c6bd054e7cf0681fdf29c55a1dc3a45c416f))
+
 ## [1.5.2](https://github.com/bamdadfr/gopeg/compare/v1.5.1...v1.5.2) (2026-05-25)
 
 
