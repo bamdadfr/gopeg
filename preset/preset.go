@@ -12,7 +12,6 @@ type Preset struct {
 	Name        string
 	Description string
 	Accept      []string // pass empty for wildcard
-	Target      string
 	OutputPath  func(inputPath string) string
 	Args        func(inputPath string, outputPath string) []string
 }
