@@ -1,9 +1,11 @@
 package preset
 
+import "gopeg/binary"
+
 func Interpolate4x() Preset {
 	return Preset{
 		Name:        "RIFE interpolate 4x",
-		Command:     "video2x",
+		Binary:      binary.Video2x(),
 		Description: "Frame interpolation via video2x RIFE.",
 		Accept:      []string{},
 		OutputPath: func(inputPath string) string {

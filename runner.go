@@ -4,9 +4,11 @@ import (
 	"log"
 	"os"
 	"os/exec"
+
+	"gopeg/preset"
 )
 
-func run(args []string) {
+func run(p *preset.Preset, args []string) {
 	if !isRunning.CompareAndSwap(false, true) {
 		return
 	}
@@ -15,17 +17,13 @@ func run(args []string) {
 
 	updateStatus("Computing...")
 
-	var binaryPath string
-
-	if args[0] == ffmpegExec() {
-		binaryPath = ffmpegPath()
+	var cmd *exec.Cmd
+	if isWindows {
+		cmd = exec.Command(p.Binary.Path.Windows, args...)
+	} else {
+		cmd = exec.Command(p.Binary.Path.Linux, args...)
 	}
 
-	if args[0] == video2xExec() {
-		binaryPath = video2xPath()
-	}
-
-	cmd := exec.Command(binaryPath, args[1:]...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 

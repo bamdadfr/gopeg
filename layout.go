@@ -104,12 +104,12 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
-		if selectedPreset.Command == "ffmpeg" && !ffmpegFound {
+		if selectedPreset.Binary.Name == "ffmpeg" && !ffmpegFound {
 			updateStatus("ffmpeg not found!")
 			return
 		}
 
-		if selectedPreset.Command == "video2x" && !video2xFound {
+		if selectedPreset.Binary.Name == "video2x" && !video2xFound {
 			updateStatus("video2x not found!")
 			return
 		}
@@ -148,21 +148,27 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 						return
 					}
 
-					if args[0] == "ffmpeg" {
-						args = append([]string{args[0], "-y"}, args[1:]...)
+					if selectedPreset.Binary.OverwriteFlag != "" {
+						args = append(
+							[]string{
+								selectedPreset.Binary.OverwriteFlag,
+							},
+							args...,
+						)
 					}
 
 					go func() {
-						run(args)
+						run(selectedPreset, args)
 					}()
 				},
 				w,
 			)
+
 			return
 		}
 
 		go func() {
-			run(args)
+			run(selectedPreset, args)
 		}()
 	})
 }

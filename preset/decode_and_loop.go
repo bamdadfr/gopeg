@@ -1,9 +1,11 @@
 package preset
 
+import "gopeg/binary"
+
 func DecodeAndLoop() Preset {
 	return Preset{
 		Name:        "Decode & loop",
-		Command:     "ffmpeg",
+		Binary:      binary.Ffmpeg(),
 		Description: "Decode to independent frames. Loop the whole video 3 times.",
 		Accept:      []string{},
 		OutputPath: func(inputPath string) string {

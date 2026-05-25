@@ -1,9 +1,11 @@
 package preset
 
+import "gopeg/binary"
+
 func Upscale4x() Preset {
 	return Preset{
 		Name:        "Upscale 4x",
-		Command:     "video2x",
+		Binary:      binary.Video2x(),
 		Description: "video2x real ESRGAN uspcaler",
 		Accept:      []string{},
 		OutputPath: func(inputPath string) string {

@@ -1,9 +1,11 @@
 package preset
 
+import "gopeg/binary"
+
 func Archive() Preset {
 	return Preset{
 		Name:        "Archive",
-		Command:     "ffmpeg",
+		Binary:      binary.Ffmpeg(),
 		Description: "Near lossless quality. H.264 codec. CRF 4. Maximum quality. Slow encoding.",
 		Accept:      []string{},
 		OutputPath: func(inputPath string) string {

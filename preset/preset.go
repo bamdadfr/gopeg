@@ -1,4 +1,4 @@
-// Package preset defines FFmpeg preset types.
+// Package preset defines binary usage with specific arguments
 package preset
 
 import (
@@ -6,11 +6,13 @@ import (
 	"path/filepath"
 	"slices"
 	"strings"
+
+	"gopeg/binary"
 )
 
 type Preset struct {
 	Name        string
-	Command     string
+	Binary      binary.Binary
 	Description string
 	Accept      []string // pass empty for wildcard
 	OutputPath  func(inputPath string) string
