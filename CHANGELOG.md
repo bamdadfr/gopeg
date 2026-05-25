@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/bamdadfr/gopeg/compare/v1.5.0...v1.5.1) (2026-05-25)
+
+
+### Performance Improvements
+
+* remove dead code ([033530b](https://github.com/bamdadfr/gopeg/commit/033530b342acac20e666787917dd50e91be513af))
+
 # [1.5.0](https://github.com/bamdadfr/gopeg/compare/v1.4.0...v1.5.0) (2026-05-25)
 
 
