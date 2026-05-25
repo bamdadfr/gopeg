@@ -10,11 +10,23 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 
 	"gopeg/preset"
+)
+
+var (
+	ffmpegFound  = false
+	video2xFound = false
+	statusText   = binding.NewString()
+	icons        = map[string]string{
+		"success": "✅",
+		"error":   "❌",
+	}
 )
 
 func createWindow() fyne.Window {
@@ -31,7 +43,7 @@ func createWindow() fyne.Window {
 	return w
 }
 
-func createList(w fyne.Window, presets []preset.Preset) *widget.List {
+func createList(presets []preset.Preset) *widget.List {
 	list := widget.NewList(
 		func() int {
 			return len(presets)
@@ -49,8 +61,6 @@ func createList(w fyne.Window, presets []preset.Preset) *widget.List {
 		},
 	)
 
-	w.SetContent(list)
-
 	return list
 }
 
@@ -62,7 +72,25 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 	}
 
 	w.SetOnDropped(func(pos fyne.Position, uris []fyne.URI) {
-		if len(uris) == 0 || selectedPreset == nil {
+		if len(uris) == 0 {
+			statusText.Set("No file detected!")
+			return
+		}
+
+		if selectedPreset == nil {
+			statusText.Set("No preset selected!")
+			return
+		}
+
+		dumbArgs := selectedPreset.Args("", "")
+
+		if dumbArgs[0] == "ffmpeg" && !ffmpegFound {
+			statusText.Set("ffmpeg not found!")
+			return
+		}
+
+		if dumbArgs[0] == "video2x" && !video2xFound {
+			statusText.Set("video2x not found!")
 			return
 		}
 
@@ -82,19 +110,27 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 		log.Println("command:", args)
 
 		if selectedPreset.IsExistPath(outputPath) {
-			dialog.ShowConfirm("Output file exists!", "The output path already exists. Overwrite?", func(overwrite bool) {
-				if !overwrite {
-					return
-				}
+			dialog.ShowConfirm(
+				"Output file exists!",
+				"The output path already exists. Overwrite?",
+				func(overwrite bool) {
+					if !overwrite {
+						return
+					}
 
-				args = append([]string{args[0], "-y"}, args[1:]...)
-				run(args)
-			},
-				w)
+					args = append([]string{args[0], "-y"}, args[1:]...)
+					statusText.Set("Computing...")
+					run(args)
+					statusText.Set("Done!")
+				},
+				w,
+			)
 			return
 		}
 
+		statusText.Set("Computing...")
 		run(args)
+		statusText.Set("Done!")
 	})
 }
 
@@ -114,16 +150,44 @@ func run(args []string) {
 }
 
 func validateBinaries() {
-	if _, err := exec.LookPath("ffmpeg"); err != nil {
-		log.Fatal(err)
+	if _, err := exec.LookPath("ffmpeg"); err == nil {
+		ffmpegFound = true
 	}
 
-	if _, err := exec.LookPath("video2x"); err != nil {
-		log.Fatal(err)
+	if _, err := exec.LookPath("video2x"); err == nil {
+		video2xFound = true
 	}
 }
 
+func createStatusBar() *fyne.Container {
+	var ffmpegWidget fyne.Widget
+	var video2xWidget fyne.Widget
+
+	if ffmpegFound {
+		ffmpegWidget = widget.NewLabel("ffmpeg " + icons["success"])
+	} else {
+		ffmpegWidget = widget.NewLabel("ffmpeg " + icons["error"])
+	}
+
+	if video2xFound {
+		video2xWidget = widget.NewLabel("video2x " + icons["success"])
+	} else {
+		video2xWidget = widget.NewLabel("video2x " + icons["error"])
+	}
+
+	statusBar := container.NewHBox(
+		widget.NewLabelWithData(statusText),
+		layout.NewSpacer(),
+		ffmpegWidget,
+		video2xWidget,
+	)
+
+	return statusBar
+}
+
 func main() {
+	statusText.Set("Loading...")
+
 	presets := []preset.Preset{
 		preset.Remux(),
 		preset.Archive(),
@@ -140,8 +204,13 @@ func main() {
 	validateBinaries()
 
 	w := createWindow()
-	list := createList(w, presets)
+	list := createList(presets)
+	statusBar := createStatusBar()
+	root := container.NewBorder(nil, statusBar, nil, nil, list)
+	w.SetContent(root)
+
 	handleDropEvent(w, list, presets)
+	statusText.Set("Ready")
 
 	w.ShowAndRun()
 }
