@@ -96,14 +96,14 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
-		dumbArgs := selectedPreset.Args("", "")
+		binaryName := selectedPreset.Binary()
 
-		if dumbArgs[0] == "ffmpeg" && !ffmpegFound {
+		if binaryName == "ffmpeg" && !ffmpegFound {
 			updateStatus("ffmpeg not found!")
 			return
 		}
 
-		if dumbArgs[0] == "video2x" && !video2xFound {
+		if binaryName == "video2x" && !video2xFound {
 			updateStatus("video2x not found!")
 			return
 		}

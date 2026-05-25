@@ -33,6 +33,11 @@ func (p Preset) IsExistPath(path string) bool {
 	return false
 }
 
+func (p Preset) Binary() string {
+	args := p.Args("", "")
+	return args[0]
+}
+
 func pathBaseName(inputPath string) string {
 	ext := filepath.Ext(inputPath)
 	base := strings.TrimSuffix(inputPath, ext)
