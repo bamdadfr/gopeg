@@ -173,7 +173,6 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 
 					go func() {
 						run(args)
-						w.Canvas().Refresh(w.Content())
 					}()
 				},
 				w,
@@ -183,7 +182,6 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 
 		go func() {
 			run(args)
-			w.Canvas().Refresh(w.Content())
 		}()
 	})
 }
