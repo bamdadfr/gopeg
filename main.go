@@ -180,7 +180,7 @@ func run(args []string) {
 	log.Println("Run:", cmd.String())
 
 	if err := cmd.Run(); err != nil {
-		log.Println("ffmpeg error:", err)
+		log.Println("Error:", err)
 		return
 	}
 
