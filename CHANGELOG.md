@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/bamdadfr/gopeg/compare/v1.1.1...v1.2.0) (2026-05-25)
+
+
+### Features
+
+* add new presets and refactor ([fead695](https://github.com/bamdadfr/gopeg/commit/fead6953a938c4fbb59c0068f44c09ae452aa681))
+
 ## [1.1.1](https://github.com/bamdadfr/gopeg/compare/v1.1.0...v1.1.1) (2026-05-23)
 
 
