@@ -200,6 +200,7 @@ func main() {
 		preset.Archive(),
 		preset.DecodeAndLoop(),
 		preset.Upscale4x(),
+		preset.Interpolate4x(),
 	}
 
 	sort.Slice(presets, func(i int, j int) bool {
