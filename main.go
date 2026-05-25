@@ -142,7 +142,9 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 						return
 					}
 
-					args = append([]string{args[0], "-y"}, args[1:]...)
+					if args[0] == "ffmpeg" {
+						args = append([]string{args[0], "-y"}, args[1:]...)
+					}
 
 					go func() {
 						run(args)
