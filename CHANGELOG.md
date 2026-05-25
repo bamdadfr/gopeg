@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/bamdadfr/gopeg/compare/v1.4.0...v1.5.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* only append -y for existing output for ffmpeg commands ([4ef6f7d](https://github.com/bamdadfr/gopeg/commit/4ef6f7d88e4c05aaae8ba72f286e5b3c02d73365))
+* watch for already running and run into goroutine ([35f09cb](https://github.com/bamdadfr/gopeg/commit/35f09cb9aa8477002e038ab7f9e25a0b8b817852))
+
+
+### Features
+
+* windows path for video2x ([dae70de](https://github.com/bamdadfr/gopeg/commit/dae70dee9404dd661b3f49d2f1616b40dc2653be))
+
 # [1.4.0](https://github.com/bamdadfr/gopeg/compare/v1.3.0...v1.4.0) (2026-05-25)
 
 
