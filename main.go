@@ -1,6 +1,8 @@
 package main
 
 import (
+	"gopeg/binary"
+
 	"fyne.io/fyne/v2/container"
 
 	"gopeg/preset"
@@ -11,7 +13,7 @@ func main() {
 	isRunning.Store(false)
 	presets := preset.List()
 
-	validateBinaries()
+	binary.Init()
 
 	w := createWindow()
 	list := createList(presets)

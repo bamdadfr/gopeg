@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gopeg/binary"
 	"log"
 	"strings"
 	"time"
@@ -31,26 +32,29 @@ func createStatusBar() *fyne.Container {
 	var ffmpegText *widget.Label
 	var video2xText *widget.Label
 
-	if ffmpegFound {
+	ffmpegIsAvailable := binary.IsAvailable(binary.Ffmpeg().Name)
+	video2xIsAvailable := binary.IsAvailable(binary.Video2x().Name)
+
+	if ffmpegIsAvailable {
 		ffmpegText = widget.NewLabel("ffmpeg " + icons["success"])
 	} else {
 		ffmpegText = widget.NewLabel("ffmpeg " + icons["error"])
 	}
 
-	if video2xFound {
+	if video2xIsAvailable {
 		video2xText = widget.NewLabel("video2x " + icons["success"])
 	} else {
 		video2xText = widget.NewLabel("video2x " + icons["error"])
 	}
 
-	container := container.NewHBox(
+	statusBar := container.NewHBox(
 		widget.NewLabelWithData(statusText),
 		layout.NewSpacer(),
 		ffmpegText,
 		video2xText,
 	)
 
-	return container
+	return statusBar
 }
 
 func createList(presets []preset.Preset) *widget.List {
@@ -104,12 +108,12 @@ func handleDropEvent(w fyne.Window, list *widget.List, presets []preset.Preset) 
 			return
 		}
 
-		if selectedPreset.Binary.Name == "ffmpeg" && !ffmpegFound {
+		if selectedPreset.Binary.Name == binary.Ffmpeg().Name && !binary.IsAvailable(binary.Ffmpeg().Name) {
 			updateStatus("ffmpeg not found!")
 			return
 		}
 
-		if selectedPreset.Binary.Name == "video2x" && !video2xFound {
+		if selectedPreset.Binary.Name == binary.Video2x().Name && !binary.IsAvailable(binary.Video2x().Name) {
 			updateStatus("video2x not found!")
 			return
 		}

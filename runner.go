@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gopeg/binary"
 	"log"
 	"os"
 	"os/exec"
@@ -17,13 +18,7 @@ func run(p *preset.Preset, args []string) {
 
 	updateStatus("Computing...")
 
-	var cmd *exec.Cmd
-	if isWindows {
-		cmd = exec.Command(p.Binary.Path.Windows, args...)
-	} else {
-		cmd = exec.Command(p.Binary.Path.Linux, args...)
-	}
-
+	cmd := exec.Command(binary.ResolvedPath(p.Binary.Name), args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
