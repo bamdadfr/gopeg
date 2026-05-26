@@ -18,10 +18,26 @@ type Queue struct {
 	mu       sync.Mutex
 	isLocked bool
 	jobs     []Job
+	onUpdate func()
 }
 
 func NewQueue() *Queue {
 	return &Queue{}
+}
+
+func (q *Queue) OnNotify(f func()) {
+	q.mu.Lock()
+	defer q.mu.Unlock()
+	q.onUpdate = f
+}
+
+func (q *Queue) notify() {
+	q.mu.Lock()
+	f := q.onUpdate
+	q.mu.Unlock()
+	if f != nil {
+		f()
+	}
 }
 
 func (q *Queue) Length() int {
@@ -45,6 +61,11 @@ func (q *Queue) IsRunning() bool {
 func (q *Queue) AddJob(inputPath string, preset *preset.Preset) {
 	q.mu.Lock()
 	defer q.mu.Unlock()
+
+	if q.isLocked {
+		return
+	}
+
 	q.jobs = append(q.jobs, Job{
 		InputPath:  inputPath,
 		OutputPath: preset.OutputPath(inputPath),
@@ -88,6 +109,7 @@ func (q *Queue) Execute() {
 			q.mu.Lock()
 			q.jobs[i].IsRunning = true
 			q.mu.Unlock()
+			q.notify()
 
 			run(job.Preset, args)
 
@@ -95,6 +117,7 @@ func (q *Queue) Execute() {
 			q.jobs[i].IsRunning = false
 			q.jobs[i].IsDone = true
 			q.mu.Unlock()
+			q.notify()
 		}
 
 		q.Purge()

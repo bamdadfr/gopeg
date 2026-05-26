@@ -65,6 +65,10 @@ func CreateQueue(q *queue.Queue) *fyne.Container {
 		},
 	)
 
+	q.OnNotify(func() {
+		list.Refresh()
+	})
+
 	root := container.NewBorder(buttons, nil, nil, nil, list)
 	return root
 }
