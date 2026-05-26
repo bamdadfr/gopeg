@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/bamdadfr/gopeg/compare/v1.7.0...v1.7.1) (2026-05-26)
+
+
+### Bug Fixes
+
+* add mutext to queue ([b1cd97c](https://github.com/bamdadfr/gopeg/commit/b1cd97c80b5631d032d4808c213a51cd5f2ad22d))
+
 # [1.7.0](https://github.com/bamdadfr/gopeg/compare/v1.6.0...v1.7.0) (2026-05-26)
 
 
