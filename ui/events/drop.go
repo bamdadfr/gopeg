@@ -28,7 +28,7 @@ func HandleDrop(w fyne.Window, q *queue.Queue) {
 			return
 		}
 
-		if q.IsLocked {
+		if q.IsRunning() {
 			env.UpdateStatus("Already running!")
 
 			time.AfterFunc(2*time.Second, func() {

@@ -12,7 +12,7 @@ import (
 
 func CreateQueue(q *queue.Queue) *fyne.Container {
 	playButton := widget.NewButton("Start", func() {
-		if q.IsLocked {
+		if q.IsRunning() {
 			return
 		}
 
@@ -20,7 +20,7 @@ func CreateQueue(q *queue.Queue) *fyne.Container {
 	})
 
 	purgeButton := widget.NewButton("Purge", func() {
-		if q.IsLocked {
+		if q.IsRunning() {
 			return
 		}
 

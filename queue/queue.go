@@ -2,6 +2,7 @@ package queue
 
 import (
 	"gopeg/preset"
+	"sync"
 )
 
 type Job struct {
@@ -14,7 +15,8 @@ type Job struct {
 }
 
 type Queue struct {
-	IsLocked bool
+	mu       sync.Mutex
+	isLocked bool
 	jobs     []Job
 }
 
@@ -23,65 +25,76 @@ func NewQueue() *Queue {
 }
 
 func (q *Queue) Length() int {
+	q.mu.Lock()
+	defer q.mu.Unlock()
 	return len(q.jobs)
 }
 
 func (q *Queue) Job(index int) Job {
+	q.mu.Lock()
+	defer q.mu.Unlock()
 	return q.jobs[index]
 }
 
-func (q *Queue) AddJob(inputPath string, preset *preset.Preset) *Queue {
-	newJob := Job{
+func (q *Queue) IsRunning() bool {
+	q.mu.Lock()
+	defer q.mu.Unlock()
+	return q.isLocked
+}
+
+func (q *Queue) AddJob(inputPath string, preset *preset.Preset) {
+	q.mu.Lock()
+	defer q.mu.Unlock()
+	q.jobs = append(q.jobs, Job{
 		InputPath:  inputPath,
 		OutputPath: preset.OutputPath(inputPath),
 		Preset:     preset,
-	}
-	q.jobs = append(q.jobs, newJob)
-	return q
+	})
 }
 
-func (q *Queue) Purge() *Queue {
+func (q *Queue) Purge() {
+	q.mu.Lock()
+	defer q.mu.Unlock()
 	q.jobs = nil
-	return q
-}
-
-func (q *Queue) lock() *Queue {
-	q.IsLocked = true
-	return q
-}
-
-func (q *Queue) unlock() *Queue {
-	q.IsLocked = false
-	return q
 }
 
 func (q *Queue) Execute() {
-	if q.IsLocked {
+	q.mu.Lock()
+	if q.isLocked {
+		q.mu.Unlock()
 		return
 	}
+	q.isLocked = true
+	q.mu.Unlock()
 
-	// all jobs inside a thread
 	go func() {
-		q.lock()
-		defer q.unlock()
+		defer func() {
+			q.mu.Lock()
+			q.isLocked = false
+			q.mu.Unlock()
+		}()
 
 		for i := range q.jobs {
-			args := q.jobs[i].Preset.Args(q.jobs[i].InputPath, q.jobs[i].OutputPath)
+			q.mu.Lock()
+			job := q.jobs[i]
+			q.mu.Unlock()
 
-			// for now, we always overwrite fuck it
-			if q.jobs[i].Preset.Binary.OverwriteFlag != "" {
-				args = append(
-					[]string{
-						q.jobs[i].Preset.Binary.OverwriteFlag,
-					},
-					args...,
-				)
+			args := job.Preset.Args(job.InputPath, job.OutputPath)
+
+			if job.Preset.Binary.OverwriteFlag != "" {
+				args = append([]string{job.Preset.Binary.OverwriteFlag}, args...)
 			}
 
+			q.mu.Lock()
 			q.jobs[i].IsRunning = true
-			run(q.jobs[i].Preset, args)
+			q.mu.Unlock()
+
+			run(job.Preset, args)
+
+			q.mu.Lock()
 			q.jobs[i].IsRunning = false
 			q.jobs[i].IsDone = true
+			q.mu.Unlock()
 		}
 
 		q.Purge()
