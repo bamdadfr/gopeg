@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/bamdadfr/gopeg/compare/v1.7.1...v1.8.0) (2026-05-26)
+
+
+### Bug Fixes
+
+* track context to kill all routines on quit ([0adb0d4](https://github.com/bamdadfr/gopeg/commit/0adb0d4824521214624d95c764040a3a28ce97de))
+
+
+### Features
+
+* UI subscription to queue ([a3bfc1b](https://github.com/bamdadfr/gopeg/commit/a3bfc1bf8bdb0958e3169f337db64d0daab8e8c9))
+
 ## [1.7.1](https://github.com/bamdadfr/gopeg/compare/v1.7.0...v1.7.1) (2026-05-26)
 
 
