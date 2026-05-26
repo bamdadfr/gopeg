@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/bamdadfr/gopeg/compare/v1.5.5...v1.6.0) (2026-05-26)
+
+
+### Bug Fixes
+
+* relocate binary validation to its package ([ce6ca04](https://github.com/bamdadfr/gopeg/commit/ce6ca042fb1bb9d2fcac5575ae0fa932bada8745))
+
+
+### Features
+
+* relocate and refactor ([d7a57b7](https://github.com/bamdadfr/gopeg/commit/d7a57b705f3653b9ea4120754a96f61a1d87e4a0))
+
 ## [1.5.5](https://github.com/bamdadfr/gopeg/compare/v1.5.4...v1.5.5) (2026-05-25)
 
 
