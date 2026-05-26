@@ -5,9 +5,12 @@ import (
 )
 
 type Job struct {
-	inputPath  string
-	outputPath string
-	preset     *preset.Preset
+	InputPath  string
+	OutputPath string
+	Preset     *preset.Preset
+
+	IsRunning bool
+	IsDone    bool
 }
 
 type Queue struct {
@@ -19,11 +22,19 @@ func NewQueue() *Queue {
 	return &Queue{}
 }
 
+func (q *Queue) Length() int {
+	return len(q.jobs)
+}
+
+func (q *Queue) Job(index int) Job {
+	return q.jobs[index]
+}
+
 func (q *Queue) AddJob(inputPath string, preset *preset.Preset) *Queue {
 	newJob := Job{
-		inputPath:  inputPath,
-		outputPath: preset.OutputPath(inputPath),
-		preset:     preset,
+		InputPath:  inputPath,
+		OutputPath: preset.OutputPath(inputPath),
+		Preset:     preset,
 	}
 	q.jobs = append(q.jobs, newJob)
 	return q
@@ -54,20 +65,23 @@ func (q *Queue) Execute() {
 		q.lock()
 		defer q.unlock()
 
-		for _, job := range q.jobs {
-			args := job.preset.Args(job.inputPath, job.outputPath)
+		for i := range q.jobs {
+			args := q.jobs[i].Preset.Args(q.jobs[i].InputPath, q.jobs[i].OutputPath)
 
 			// for now, we always overwrite fuck it
-			if job.preset.Binary.OverwriteFlag != "" {
+			if q.jobs[i].Preset.Binary.OverwriteFlag != "" {
 				args = append(
 					[]string{
-						job.preset.Binary.OverwriteFlag,
+						q.jobs[i].Preset.Binary.OverwriteFlag,
 					},
 					args...,
 				)
 			}
 
-			run(job.preset, args)
+			q.jobs[i].IsRunning = true
+			run(q.jobs[i].Preset, args)
+			q.jobs[i].IsRunning = false
+			q.jobs[i].IsDone = true
 		}
 
 		q.Purge()

@@ -52,7 +52,5 @@ func HandleDrop(w fyne.Window, q *queue.Queue) {
 
 			q.AddJob(inputPath, selectedPreset)
 		}
-
-		q.Execute()
 	})
 }

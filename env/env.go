@@ -12,6 +12,8 @@ var (
 	Icons      = map[string]string{
 		"success": "✅",
 		"error":   "❌",
+		"wait":    "⌛",
+		"play":    "▶️",
 	}
 )
 
