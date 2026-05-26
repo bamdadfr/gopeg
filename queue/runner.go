@@ -1,7 +1,8 @@
-package main
+package queue
 
 import (
 	"gopeg/binary"
+	"gopeg/env"
 	"log"
 	"os"
 	"os/exec"
@@ -10,13 +11,7 @@ import (
 )
 
 func run(p *preset.Preset, args []string) {
-	if !isRunning.CompareAndSwap(false, true) {
-		return
-	}
-
-	defer isRunning.Store(false)
-
-	updateStatus("Computing...")
+	env.UpdateStatus("Computing...")
 
 	cmd := exec.Command(binary.ResolvedPath(p.Binary.Name), args...)
 	cmd.Stdout = os.Stdout
@@ -26,9 +21,9 @@ func run(p *preset.Preset, args []string) {
 
 	if err := cmd.Run(); err != nil {
 		log.Println("Error:", err)
-		updateStatus("Error:" + err.Error())
+		env.UpdateStatus("Error:" + err.Error())
 		return
 	}
 
-	updateStatus("Done!")
+	env.UpdateStatus("Done!")
 }

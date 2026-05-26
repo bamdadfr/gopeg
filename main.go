@@ -2,27 +2,22 @@ package main
 
 import (
 	"gopeg/binary"
-
-	"fyne.io/fyne/v2/container"
+	"gopeg/env"
+	"gopeg/queue"
+	"gopeg/ui"
 
 	"gopeg/preset"
 )
 
 func main() {
-	updateStatus("Loading...")
-	isRunning.Store(false)
-	presets := preset.List()
+	env.UpdateStatus("Loading...")
 
 	binary.Init()
+	presets := preset.List()
 
-	w := createWindow()
-	list := createList(presets)
-	statusBar := createStatusBar()
-	root := container.NewBorder(nil, statusBar, nil, nil, list)
-	w.SetContent(root)
+	q := queue.NewQueue()
+	w := ui.Init(presets, q)
 
-	handleDropEvent(w, list, presets)
-	updateStatus("Ready")
-
+	env.UpdateStatus("Ready")
 	w.ShowAndRun()
 }
