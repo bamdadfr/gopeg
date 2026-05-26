@@ -1,6 +1,7 @@
 package queue
 
 import (
+	"context"
 	"gopeg/preset"
 	"sync"
 )
@@ -19,10 +20,11 @@ type Queue struct {
 	isLocked bool
 	jobs     []Job
 	onUpdate func()
+	ctx      context.Context
 }
 
-func NewQueue() *Queue {
-	return &Queue{}
+func NewQueue(ctx context.Context) *Queue {
+	return &Queue{ctx: ctx}
 }
 
 func (q *Queue) OnNotify(f func()) {
@@ -111,7 +113,7 @@ func (q *Queue) Execute() {
 			q.mu.Unlock()
 			q.notify()
 
-			run(job.Preset, args)
+			run(q.ctx, job.Preset, args)
 
 			q.mu.Lock()
 			q.jobs[i].IsRunning = false

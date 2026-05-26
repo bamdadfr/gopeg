@@ -1,6 +1,7 @@
 package queue
 
 import (
+	"context"
 	"gopeg/binary"
 	"gopeg/env"
 	"log"
@@ -10,10 +11,10 @@ import (
 	"gopeg/preset"
 )
 
-func run(p *preset.Preset, args []string) {
+func run(ctx context.Context, p *preset.Preset, args []string) {
 	env.UpdateStatus("Computing...")
 
-	cmd := exec.Command(binary.ResolvedPath(p.Binary.Name), args...)
+	cmd := exec.CommandContext(ctx, binary.ResolvedPath(p.Binary.Name), args...)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 
