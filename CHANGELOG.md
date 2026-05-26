@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/bamdadfr/gopeg/compare/v1.6.0...v1.7.0) (2026-05-26)
+
+
+### Features
+
+* add draft UI for queue ([146e6ed](https://github.com/bamdadfr/gopeg/commit/146e6ed185718e97329931a4da57af449369e80a))
+
 # [1.6.0](https://github.com/bamdadfr/gopeg/compare/v1.5.5...v1.6.0) (2026-05-26)
 
 
