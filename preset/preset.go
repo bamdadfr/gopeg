@@ -26,6 +26,9 @@ func List() []Preset {
 		DecodeAndLoop(),
 		Upscale4x(),
 		Interpolate4x(),
+		Decode(),
+		InstagramVerticalV1(),
+		InstagramVerticalV2(),
 	}
 
 	slices.SortFunc(presets, func(a, b Preset) int {
