@@ -8,10 +8,8 @@ func Interpolate4x() Preset {
 		Binary:      binary.Video2x(),
 		Description: "Frame interpolation via video2x RIFE.",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_rife_4x.mov"
-		},
+		Ext:         "mov",
+		Suffix:      "rife_4x",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

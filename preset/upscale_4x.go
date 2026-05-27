@@ -8,10 +8,8 @@ func Upscale4x() Preset {
 		Binary:      binary.Video2x(),
 		Description: "video2x real ESRGAN uspcaler",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_upscale_4x.mov"
-		},
+		Ext:         "mov",
+		Suffix:      "upscale_4x",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

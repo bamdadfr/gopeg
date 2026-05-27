@@ -8,10 +8,8 @@ func Decode() Preset {
 		Binary:      binary.Ffmpeg(),
 		Description: "Decode to independent frames. FFV1 codec.",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_decode.mkv"
-		},
+		Ext:         "mkv",
+		Suffix:      "decode",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

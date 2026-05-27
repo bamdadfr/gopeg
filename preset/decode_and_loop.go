@@ -8,10 +8,8 @@ func DecodeAndLoop() Preset {
 		Binary:      binary.Ffmpeg(),
 		Description: "Decode to independent frames. Loop the whole video 3 times.",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_decode_loop.mkv"
-		},
+		Ext:         "mkv",
+		Suffix:      "decode_loop",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-stream_loop", "3",

@@ -8,10 +8,8 @@ func InstagramVerticalV2() Preset {
 		Binary:      binary.Ffmpeg(),
 		Description: "Compressing for instagram 9:16 (1080p lanczos 20M/25M)",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_instagram_vertical_v1.mp4"
-		},
+		Ext:         "mp4",
+		Suffix:      "instagram_vertical_v2",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

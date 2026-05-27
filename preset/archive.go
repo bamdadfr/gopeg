@@ -8,11 +8,9 @@ func Archive() Preset {
 		Binary:      binary.Ffmpeg(),
 		Description: "Near lossless quality. H.264 codec. CRF 4. Maximum quality. Slow encoding.",
 		Accept:      []string{},
-		OutputPath: func(inputPath string) string {
-			base := pathBaseName(inputPath)
-			return base + "_archive.mp4"
-		},
-		// TODO: remove hardcoded 30fps
+		Ext:         "mp4",
+		Suffix:      "archive",
+		// TODO: remove hardcoded 30fps?
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

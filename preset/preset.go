@@ -15,20 +15,21 @@ type Preset struct {
 	Binary      binary.Binary
 	Description string
 	Accept      []string // pass empty for wildcard
-	OutputPath  func(inputPath string) string
+	Ext         string   // extension
+	Suffix      string
 	Args        func(inputPath string, outputPath string) []string
 }
 
 func List() []Preset {
 	presets := []Preset{
-		Remux(),
 		Archive(),
-		DecodeAndLoop(),
-		Upscale4x(),
-		Interpolate4x(),
+		Remux(),
 		Decode(),
+		DecodeAndLoop(),
 		InstagramVerticalV1(),
 		InstagramVerticalV2(),
+		Interpolate4x(),
+		Upscale4x(),
 	}
 
 	slices.SortFunc(presets, func(a, b Preset) int {
@@ -53,6 +54,11 @@ func (p Preset) IsExistPath(path string) bool {
 	}
 
 	return false
+}
+
+func (p Preset) OutputPath(inputPath string) string {
+	base := pathBaseName(inputPath)
+	return base + "_" + p.Suffix + "." + p.Ext
 }
 
 func pathBaseName(inputPath string) string {
