@@ -1,3 +1,16 @@
+# [1.9.0](https://github.com/bamdadfr/gopeg/compare/v1.8.0...v1.9.0) (2026-05-27)
+
+
+### Bug Fixes
+
+* add better description ([13f7f18](https://github.com/bamdadfr/gopeg/commit/13f7f18d0dae9babb5aaa29f48e471cfb23c67f2))
+* derive output paths from fields ([70ba1fc](https://github.com/bamdadfr/gopeg/commit/70ba1fc21de5ec81929e546d94b5c9a9c4e86a69)), closes [#10](https://github.com/bamdadfr/gopeg/issues/10)
+
+
+### Features
+
+* add new presets ([d046f4a](https://github.com/bamdadfr/gopeg/commit/d046f4a4a2649631eb0784699d8a35f947c8e860))
+
 # [1.8.0](https://github.com/bamdadfr/gopeg/compare/v1.7.1...v1.8.0) (2026-05-26)
 
 
