@@ -6,7 +6,7 @@ func InstagramVerticalV2() Preset {
 	return Preset{
 		Name:        "Instagram Vertical v2",
 		Binary:      binary.Ffmpeg(),
-		Description: "Compressing for instagram 9:16 (1080p lanczos 20M/25M)",
+		Description: "320kbps AAC",
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "instagram_vertical_v2",
