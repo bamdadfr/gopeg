@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/bamdadfr/gopeg/compare/v1.11.0...v1.12.0) (2026-05-29)
+
+
+### Features
+
+* add 10 bits x264 and crf 1 ([f439f04](https://github.com/bamdadfr/gopeg/commit/f439f0401bce1364c32a0c58827b95965052f54d))
+
+
+### Performance Improvements
+
+* replace placebo x264 to veryslow ([15850ed](https://github.com/bamdadfr/gopeg/commit/15850edb6bf231668a4ddda2f497cafb1238f044))
+
 # [1.11.0](https://github.com/bamdadfr/gopeg/compare/v1.10.0...v1.11.0) (2026-05-29)
 
 
