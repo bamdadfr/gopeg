@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/bamdadfr/gopeg/compare/v1.12.0...v1.12.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* actually add crf1 ([d3ff419](https://github.com/bamdadfr/gopeg/commit/d3ff419a1337ea1dd17a499cbd5c2a1cb10c6ff7))
+
 # [1.12.0](https://github.com/bamdadfr/gopeg/compare/v1.11.0...v1.12.0) (2026-05-29)
 
 
