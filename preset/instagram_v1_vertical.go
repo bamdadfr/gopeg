@@ -2,14 +2,14 @@ package preset
 
 import "gopeg/binary"
 
-func InstagramVerticalV2() Preset {
+func InstagramV1Vertical() Preset {
 	return Preset{
-		Name:        "Instagram Vertical v2",
+		Name:        "Instagram v1 vertical",
 		Binary:      binary.Ffmpeg(),
-		Description: "320kbps AAC",
+		Description: "Compressing for instagram 9:16 (1080p lanczos 20M/25M)",
 		Accept:      []string{},
 		Ext:         "mp4",
-		Suffix:      "instagram_vertical_v2",
+		Suffix:      "instagram_v1_vertical",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,
@@ -24,7 +24,7 @@ func InstagramVerticalV2() Preset {
 				"-movflags",
 				"+faststart",
 				"-c:a", "aac",
-				"-b:a", "320k",
+				"-b:a", "128k",
 				outputPath,
 			}
 		},

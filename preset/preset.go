@@ -30,8 +30,9 @@ func List() []Preset {
 		Remux(),
 		Decode(),
 		DecodeAndLoop(),
-		InstagramVerticalV1(),
-		InstagramVerticalV2(),
+		InstagramV1Vertical(),
+		InstagramV2Vertical(),
+		InstagramV2Square(),
 		Interpolate4x(),
 		Upscale4x(),
 	}
