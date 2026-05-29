@@ -26,7 +26,7 @@ func InstagramV3Vbr1PremiereVertical() Preset {
 				"-b:v", "20M",
 				"-maxrate", "24M",
 				"-bufsize", "48M", // convention
-				"-preset", "placebo",
+				"-preset", "veryslow",
 				"-movflags", "+faststart",
 				"-c:a", "aac",
 				"-b:a", "320k",

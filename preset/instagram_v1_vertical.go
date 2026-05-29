@@ -19,7 +19,7 @@ func InstagramV1Vertical() Preset {
 				"-maxrate", "20M",
 				"-bufsize", "25M",
 				"-pix_fmt", "yuv420p",
-				"-preset", "placebo",
+				"-preset", "veryslow",
 				"-g", "30",
 				"-movflags",
 				"+faststart",

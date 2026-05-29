@@ -18,7 +18,7 @@ func ArchiveX264Crf12() Preset {
 				"-maxrate", "240M",
 				"-bufsize", "250M",
 				"-pix_fmt", "yuv420p",
-				"-preset", "placebo",
+				"-preset", "veryslow",
 				"-g", "30",
 				"-profile:v", "high",
 				"-level", "4.1",
