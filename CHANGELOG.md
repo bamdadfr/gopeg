@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/bamdadfr/gopeg/compare/v1.9.0...v1.10.0) (2026-05-29)
+
+
+### Bug Fixes
+
+* renames ([69efc30](https://github.com/bamdadfr/gopeg/commit/69efc3020414a3195690704ac10b4cedb8367ad9))
+
+
+### Features
+
+* add new archive declinations ([f6c9264](https://github.com/bamdadfr/gopeg/commit/f6c92644d86c00d5954e6d8cf477d87b934a9bed))
+* add new video2x presets ([2a27d9a](https://github.com/bamdadfr/gopeg/commit/2a27d9a2f271d2db8488afee731ac4c1a73f6270))
+* rename instagram presets and add square v2 ([f25c7cc](https://github.com/bamdadfr/gopeg/commit/f25c7cc441b6e01af1f441813a11e77dd55d1ae9))
+
 # [1.9.0](https://github.com/bamdadfr/gopeg/compare/v1.8.0...v1.9.0) (2026-05-27)
 
 
