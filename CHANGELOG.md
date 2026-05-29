@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/bamdadfr/gopeg/compare/v1.12.1...v1.12.2) (2026-05-29)
+
+
+### Bug Fixes
+
+* replace upscale x5 x6 with x2 x3 ([f41ab93](https://github.com/bamdadfr/gopeg/commit/f41ab93d513a4ab1e8c1cbe6e8577fa01c805b59))
+
 ## [1.12.1](https://github.com/bamdadfr/gopeg/compare/v1.12.0...v1.12.1) (2026-05-29)
 
 
