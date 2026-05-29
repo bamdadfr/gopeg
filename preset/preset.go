@@ -22,7 +22,11 @@ type Preset struct {
 
 func List() []Preset {
 	presets := []Preset{
-		Archive(),
+		ArchiveCrf4(),
+		ArchiveCrf8(),
+		ArchiveCrf10(),
+		ArchiveCrf12(),
+		ArchiveCrf16(),
 		Remux(),
 		Decode(),
 		DecodeAndLoop(),
