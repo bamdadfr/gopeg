@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/bamdadfr/gopeg/compare/v1.12.2...v1.12.3) (2026-05-29)
+
+
+### Bug Fixes
+
+* remove real esrgan x2 x3 ([c4600db](https://github.com/bamdadfr/gopeg/commit/c4600dbff18ec1934f695cfcb005bb90e4ac5cb0))
+
 ## [1.12.2](https://github.com/bamdadfr/gopeg/compare/v1.12.1...v1.12.2) (2026-05-29)
 
 
