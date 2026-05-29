@@ -34,6 +34,7 @@ func List() []Preset {
 		ArchiveX264Crf12(),
 		ArchiveX264Crf16(),
 		// archives x264 10 bits
+		ArchiveX26410bitsCrf1(),
 		ArchiveX26410bitsCrf4(),
 		ArchiveX26410bitsCrf8(),
 		ArchiveX26410bitsCrf12(),
