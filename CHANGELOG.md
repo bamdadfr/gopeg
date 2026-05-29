@@ -1,3 +1,15 @@
+# [1.11.0](https://github.com/bamdadfr/gopeg/compare/v1.10.0...v1.11.0) (2026-05-29)
+
+
+### Bug Fixes
+
+* rewrite insta v1 desc ([2afc2d1](https://github.com/bamdadfr/gopeg/commit/2afc2d1cd97f24f662d79728631e9c3de599e2af))
+
+
+### Features
+
+* add new presets ([1ff9f38](https://github.com/bamdadfr/gopeg/commit/1ff9f38143a2a1b14af9b2c7e50d2d6e65359f9e))
+
 # [1.10.0](https://github.com/bamdadfr/gopeg/compare/v1.9.0...v1.10.0) (2026-05-29)
 
 
