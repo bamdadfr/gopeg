@@ -38,6 +38,8 @@ func List() []Preset {
 		InstagramV1Vertical(),
 		InstagramV2Vertical(),
 		InstagramV2Square(),
+		InstagramV3Vbr1PremiereVertical(),
+		InstagramV3Vbr1PremiereSquare(),
 		// video2x interpolation
 		Video2xRife4x(),
 		Video2xRife5x(),

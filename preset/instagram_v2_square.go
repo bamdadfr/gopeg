@@ -4,7 +4,7 @@ import "gopeg/binary"
 
 func InstagramV2Square() Preset {
 	return Preset{
-		Name:        "Instagram v2 square",
+		Name:        "Instagram v2 CBR Square",
 		Binary:      binary.Ffmpeg(),
 		Description: "v1 + 320kbps AAC",
 		Accept:      []string{},

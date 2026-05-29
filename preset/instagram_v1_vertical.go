@@ -4,9 +4,9 @@ import "gopeg/binary"
 
 func InstagramV1Vertical() Preset {
 	return Preset{
-		Name:        "Instagram v1 vertical",
+		Name:        "Instagram v1 CBR Vertical",
 		Binary:      binary.Ffmpeg(),
-		Description: "1080p lanczos 20M/25M CBR 4",
+		Description: "1080p, lanczos, CBR 20M/25M, CRF 4, AAC 128k",
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "instagram_v1_vertical",
