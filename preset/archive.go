@@ -10,7 +10,6 @@ func Archive() Preset {
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "archive",
-		// TODO: remove hardcoded 30fps?
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,
