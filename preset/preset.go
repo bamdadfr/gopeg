@@ -26,12 +26,18 @@ func List() []Preset {
 		ArchiveFfv1(),
 		ArchiveFfv1Loop3(),
 		ArchiveFfv1Loop4(),
-		// archives lossy
+		// archives x264
+		ArchiveX264Crf1(),
 		ArchiveX264Crf4(),
 		ArchiveX264Crf8(),
 		ArchiveX264Crf10(),
 		ArchiveX264Crf12(),
 		ArchiveX264Crf16(),
+		// archives x264 10 bits
+		ArchiveX26410bitsCrf4(),
+		ArchiveX26410bitsCrf8(),
+		ArchiveX26410bitsCrf12(),
+		ArchiveX26410bitsCrf16(),
 		// repacks
 		RepackMkvMp4(),
 		// instagram

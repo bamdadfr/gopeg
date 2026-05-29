@@ -6,7 +6,7 @@ func ArchiveX264Crf8() Preset {
 	return Preset{
 		Name:        "Archive x264 CRF 8",
 		Binary:      binary.Ffmpeg(),
-		Description: "Visually seamless. ~11x from ProRes 4444. Use this for intermediary generative files.",
+		Description: "Close to seamless. Smears gradients. ~11x from ProRes 4444.",
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "archive_x264_crf_8",
