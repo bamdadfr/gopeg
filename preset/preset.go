@@ -52,9 +52,9 @@ func List() []Preset {
 		Video2xRife5x(),
 		Video2xRife6x(),
 		// video2x upscale
+		Video2xUpscale2x(),
+		Video2xUpscale3x(),
 		Video2xUpscale4x(),
-		Video2xUpscale5x(),
-		Video2xUpscale6x(),
 	}
 
 	slices.SortFunc(presets, func(a, b Preset) int {
