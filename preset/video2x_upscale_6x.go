@@ -2,21 +2,21 @@ package preset
 
 import "gopeg/binary"
 
-func Upscale4x() Preset {
+func Video2xUpscale6x() Preset {
 	return Preset{
-		Name:        "Upscale 4x",
+		Name:        "Video2X upscale 6x",
 		Binary:      binary.Video2x(),
-		Description: "video2x real ESRGAN uspcaler",
+		Description: "Real ESRGAN. ProRes 4444 container with 4:2:2 12bits stream.",
 		Accept:      []string{},
 		Ext:         "mov",
-		Suffix:      "upscale_4x",
+		Suffix:      "upscale_6x",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,
 				"-o", outputPath,
 				"-p", "realesrgan",
 				"--realesrgan-model", "realesrgan-plus",
-				"-s", "4",
+				"-s", "6",
 				"-c", "prores_ks",
 				"-e", "profile=4",
 			}

@@ -33,8 +33,12 @@ func List() []Preset {
 		InstagramV1Vertical(),
 		InstagramV2Vertical(),
 		InstagramV2Square(),
-		Interpolate4x(),
-		Upscale4x(),
+		Video2xRife4x(),
+		Video2xRife5x(),
+		Video2xRife6x(),
+		Video2xUpscale4x(),
+		Video2xUpscale5x(),
+		Video2xUpscale6x(),
 	}
 
 	slices.SortFunc(presets, func(a, b Preset) int {
