@@ -9,7 +9,7 @@ func Video2xUpscale6x() Preset {
 		Description: "Real ESRGAN. ProRes 4444 container with 4:2:2 12bits stream.",
 		Accept:      []string{},
 		Ext:         "mov",
-		Suffix:      "upscale_6x",
+		Suffix:      "esrgan_6x",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

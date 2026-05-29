@@ -2,14 +2,14 @@ package preset
 
 import "gopeg/binary"
 
-func Decode() Preset {
+func ArchiveFfv1() Preset {
 	return Preset{
-		Name:        "Decode",
+		Name:        "Archive FFV1",
 		Binary:      binary.Ffmpeg(),
-		Description: "Decode to independent frames. FFV1 codec.",
+		Description: "Lossless.",
 		Accept:      []string{},
 		Ext:         "mkv",
-		Suffix:      "decode",
+		Suffix:      "archive_ffv1",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,

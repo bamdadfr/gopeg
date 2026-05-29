@@ -2,19 +2,19 @@ package preset
 
 import "gopeg/binary"
 
-func ArchiveCrf4() Preset {
+func ArchiveX264Crf12() Preset {
 	return Preset{
-		Name:        "Archive CRF 4",
+		Name:        "Archive x264 CRF 12",
 		Binary:      binary.Ffmpeg(),
-		Description: "h264. Visually seamless. ~9x from ProRes 4444.",
+		Description: "Very light softening and tiny detail smearing. ~20x from ProRes 4444.",
 		Accept:      []string{},
 		Ext:         "mp4",
-		Suffix:      "archive_crf_4",
+		Suffix:      "archive_x264_crf_12",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
 				"-i", inputPath,
 				"-c:v", "libx264",
-				"-crf", "4",
+				"-crf", "12",
 				"-maxrate", "240M",
 				"-bufsize", "250M",
 				"-pix_fmt", "yuv420p",

@@ -2,17 +2,17 @@ package preset
 
 import "gopeg/binary"
 
-func DecodeAndLoop() Preset {
+func ArchiveFfv1Loop3() Preset {
 	return Preset{
-		Name:        "Decode & loop",
+		Name:        "Archive FFV1 & Loop 3",
 		Binary:      binary.Ffmpeg(),
-		Description: "Decode to independent frames. Loop the whole video 3 times.",
+		Description: "Lossless. 3 total loops.",
 		Accept:      []string{},
 		Ext:         "mkv",
-		Suffix:      "decode_loop",
+		Suffix:      "archive_ffv1_loop_3",
 		Args: func(inputPath string, outputPath string) []string {
 			return []string{
-				"-stream_loop", "3",
+				"-stream_loop", "2", // adds to input (total - 1)
 				"-i", inputPath,
 				"-c:v", "ffv1",
 				outputPath,

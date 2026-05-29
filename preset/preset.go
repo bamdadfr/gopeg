@@ -22,20 +22,27 @@ type Preset struct {
 
 func List() []Preset {
 	presets := []Preset{
-		ArchiveCrf4(),
-		ArchiveCrf8(),
-		ArchiveCrf10(),
-		ArchiveCrf12(),
-		ArchiveCrf16(),
-		Remux(),
-		Decode(),
-		DecodeAndLoop(),
+		// archives lossless
+		ArchiveFfv1(),
+		ArchiveFfv1Loop3(),
+		ArchiveFfv1Loop4(),
+		// archives lossy
+		ArchiveX264Crf4(),
+		ArchiveX264Crf8(),
+		ArchiveX264Crf10(),
+		ArchiveX264Crf12(),
+		ArchiveX264Crf16(),
+		// repacks
+		RepackMkvMp4(),
+		// instagram
 		InstagramV1Vertical(),
 		InstagramV2Vertical(),
 		InstagramV2Square(),
+		// video2x interpolation
 		Video2xRife4x(),
 		Video2xRife5x(),
 		Video2xRife6x(),
+		// video2x upscale
 		Video2xUpscale4x(),
 		Video2xUpscale5x(),
 		Video2xUpscale6x(),
