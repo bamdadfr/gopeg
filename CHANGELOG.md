@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/bamdadfr/gopeg/compare/v1.13.0...v1.13.1) (2026-05-31)
+
+
+### Bug Fixes
+
+* improve fps management ([5dc2790](https://github.com/bamdadfr/gopeg/commit/5dc279053e3f6a46a0375b2ad650d3a334fad81f))
+
 # [1.13.0](https://github.com/bamdadfr/gopeg/compare/v1.12.3...v1.13.0) (2026-05-31)
 
 
