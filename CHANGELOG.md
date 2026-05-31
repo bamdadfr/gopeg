@@ -1,3 +1,24 @@
+# [1.13.0](https://github.com/bamdadfr/gopeg/compare/v1.12.3...v1.13.0) (2026-05-31)
+
+
+### Bug Fixes
+
+* send status updater to go routine ([5d7626c](https://github.com/bamdadfr/gopeg/commit/5d7626c4a79e29ee1901ecf4923ae92de3c506af))
+* use fyne wrapper for queue list refresh rendering ([8ea15aa](https://github.com/bamdadfr/gopeg/commit/8ea15aa905eb9a584786febda965cb5620bb5dfe))
+
+
+### Features
+
+* add multi pass handling ([c8ee171](https://github.com/bamdadfr/gopeg/commit/c8ee17120a967ff0fc6e03efa0ec5a49b1f53714))
+* add pipelines ([e56e421](https://github.com/bamdadfr/gopeg/commit/e56e42110482a1915aa3cdd1de8bf8d9029fa59f))
+* handle runner errors ([ddbacc5](https://github.com/bamdadfr/gopeg/commit/ddbacc5c6ba8f9455c6af4cbc4a15feaf599264b))
+
+
+### Performance Improvements
+
+* extract video2x rife args ([56a7e48](https://github.com/bamdadfr/gopeg/commit/56a7e483873ce8bceee1d0e6faf6ec21d9a4be49))
+* factor duplicate args ([9077dcb](https://github.com/bamdadfr/gopeg/commit/9077dcb74cdc4ad0cf82af4a1e16e3261aa28dea))
+
 ## [1.12.3](https://github.com/bamdadfr/gopeg/compare/v1.12.2...v1.12.3) (2026-05-29)
 
 
