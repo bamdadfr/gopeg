@@ -1,6 +1,8 @@
 package preset
 
-import "gopeg/binary"
+import (
+	"gopeg/binary"
+)
 
 func Video2xRife4x() Preset {
 	return Preset{
@@ -11,14 +13,9 @@ func Video2xRife4x() Preset {
 		Ext:         "mov",
 		Suffix:      "rife_4x",
 		Args: func(inputPath string, outputPath string) [][]string {
-			return [][]string{{
-				"-i", inputPath,
-				"-o", outputPath,
-				"-p", "rife",
-				"-m", "4",
-				"-c", "prores_ks",
-				"-e", "profile=4",
-			}}
+			return [][]string{
+				video2xRifeArgs(inputPath, outputPath, 4),
+			}
 		},
 	}
 }
