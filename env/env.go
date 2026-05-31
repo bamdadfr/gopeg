@@ -19,10 +19,12 @@ var (
 )
 
 func UpdateStatus(text string) {
-	err := StatusText.Set(text)
-	if err != nil {
-		log.Println("Status error:", err)
-	}
+	go func() {
+		err := StatusText.Set(text)
+		if err != nil {
+			log.Println("Status error:", err)
+		}
+	}()
 }
 
 func NullDevice() string {
