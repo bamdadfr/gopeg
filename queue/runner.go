@@ -2,6 +2,7 @@ package queue
 
 import (
 	"context"
+	"fmt"
 	"gopeg/binary"
 	"gopeg/env"
 	"log"
@@ -11,7 +12,7 @@ import (
 	"gopeg/preset"
 )
 
-func run(ctx context.Context, p *preset.Preset, args []string) {
+func run(ctx context.Context, p *preset.Preset, args []string) error {
 	env.UpdateStatus("Computing...")
 
 	cmd := exec.CommandContext(ctx, binary.ResolvedPath(p.Binary.Name), args...)
@@ -22,9 +23,10 @@ func run(ctx context.Context, p *preset.Preset, args []string) {
 
 	if err := cmd.Run(); err != nil {
 		log.Println("Error:", err)
-		env.UpdateStatus("Error:" + err.Error())
-		return
+		env.UpdateStatus("Error: " + err.Error())
+		return fmt.Errorf("%s: %w", p.Binary.Name, err)
 	}
 
 	env.UpdateStatus("Done!")
+	return nil
 }

@@ -3,6 +3,7 @@ package queue
 import (
 	"context"
 	"gopeg/preset"
+	"log"
 	"sync"
 )
 
@@ -114,7 +115,10 @@ func (q *Queue) Execute() {
 					passArgs = append([]string{job.Preset.Binary.OverwriteFlag}, passArgs...)
 				}
 
-				run(q.ctx, job.Preset, passArgs)
+				if err := run(q.ctx, job.Preset, passArgs); err != nil {
+					log.Println("Aborting job:", err)
+					continue
+				}
 			}
 
 			q.mu.Lock()
