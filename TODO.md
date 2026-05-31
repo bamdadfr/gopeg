@@ -5,7 +5,7 @@
 - [x] add multi pass rendering
 - [x] add runner error handling
 - [ ] allow to stop queue
-- [ ] add factories for presets factories
+- [ ] extract to helpers for presets args
 - [ ] improve UI reactivity and loop
 
 ## from github issues
