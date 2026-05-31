@@ -35,9 +35,7 @@ func X264TenBits(crf int) Preset {
 					"-level", "5.1",
 					"-movflags",
 					"+faststart",
-					"-c:a", "aac",
-					"-ar", "48000",
-					"-b:a", "384k",
+					"-c:a", "alac",
 					outputPath,
 				},
 			}
