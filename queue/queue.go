@@ -102,18 +102,20 @@ func (q *Queue) Execute() {
 			job := q.jobs[i]
 			q.mu.Unlock()
 
-			args := job.Preset.Args(job.InputPath, job.OutputPath)
-
-			if job.Preset.Binary.OverwriteFlag != "" {
-				args = append([]string{job.Preset.Binary.OverwriteFlag}, args...)
-			}
+			passes := job.Preset.Args(job.InputPath, job.OutputPath)
 
 			q.mu.Lock()
 			q.jobs[i].IsRunning = true
 			q.mu.Unlock()
 			q.notify()
 
-			run(q.ctx, job.Preset, args)
+			for _, passArgs := range passes {
+				if job.Preset.Binary.OverwriteFlag != "" {
+					passArgs = append([]string{job.Preset.Binary.OverwriteFlag}, passArgs...)
+				}
+
+				run(q.ctx, job.Preset, passArgs)
+			}
 
 			q.mu.Lock()
 			q.jobs[i].IsRunning = false

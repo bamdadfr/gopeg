@@ -10,15 +10,15 @@ func Video2xRife6x() Preset {
 		Accept:      []string{},
 		Ext:         "mov",
 		Suffix:      "rife_6x",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-o", outputPath,
 				"-p", "rife",
 				"-m", "6",
 				"-c", "prores_ks",
 				"-e", "profile=4",
-			}
+			}}
 		},
 	}
 }

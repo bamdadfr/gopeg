@@ -10,8 +10,8 @@ func InstagramV2Square() Preset {
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "instagram_v2_square",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-vf", "scale=1080:1080:flags=lanczos",
 				"-c:v", "libx264",
@@ -26,7 +26,7 @@ func InstagramV2Square() Preset {
 				"-c:a", "aac",
 				"-b:a", "320k",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

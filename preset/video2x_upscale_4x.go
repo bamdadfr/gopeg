@@ -10,8 +10,8 @@ func Video2xUpscale4x() Preset {
 		Accept:      []string{},
 		Ext:         "mov",
 		Suffix:      "esrgan_4x",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-o", outputPath,
 				"-p", "realesrgan",
@@ -19,7 +19,7 @@ func Video2xUpscale4x() Preset {
 				"-s", "4",
 				"-c", "prores_ks",
 				"-e", "profile=4",
-			}
+			}}
 		},
 	}
 }

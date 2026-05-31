@@ -10,8 +10,8 @@ func InstagramV1Vertical() Preset {
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "instagram_v1_vertical",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-vf", "scale=1080:1920:flags=lanczos",
 				"-c:v", "libx264",
@@ -26,7 +26,7 @@ func InstagramV1Vertical() Preset {
 				"-c:a", "aac",
 				"-b:a", "128k",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

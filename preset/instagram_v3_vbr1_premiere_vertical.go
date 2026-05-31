@@ -10,8 +10,8 @@ func InstagramV3Vbr1PremiereVertical() Preset {
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "instagram_v3_vbr1_premiere_vertical",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-vf", "scale=1080:1920:flags=lanczos",
 				"-c:v", "libx264",
@@ -33,7 +33,7 @@ func InstagramV3Vbr1PremiereVertical() Preset {
 				"-ar", "48000", // force 38kHz
 				"-ac", "2",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

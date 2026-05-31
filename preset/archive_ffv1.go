@@ -10,12 +10,12 @@ func ArchiveFfv1() Preset {
 		Accept:      []string{},
 		Ext:         "mkv",
 		Suffix:      "archive_ffv1",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-c:v", "ffv1",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

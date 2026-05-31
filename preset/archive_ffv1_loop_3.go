@@ -10,13 +10,13 @@ func ArchiveFfv1Loop3() Preset {
 		Accept:      []string{},
 		Ext:         "mkv",
 		Suffix:      "archive_ffv1_loop_3",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-stream_loop", "2", // adds to input (total - 1)
 				"-i", inputPath,
 				"-c:v", "ffv1",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

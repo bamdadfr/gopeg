@@ -17,7 +17,7 @@ type Preset struct {
 	Accept      []string // pass empty for wildcard
 	Ext         string   // extension
 	Suffix      string
-	Args        func(inputPath string, outputPath string) []string
+	Args        func(inputPath string, outputPath string) [][]string
 }
 
 func List() []Preset {
@@ -33,6 +33,8 @@ func List() []Preset {
 		ArchiveX264Crf10(),
 		ArchiveX264Crf12(),
 		ArchiveX264Crf16(),
+		// archives x264 2 passes
+		ArchiveX264TwoPass(),
 		// archives x264 10 bits
 		ArchiveX26410bitsCrf1(),
 		ArchiveX26410bitsCrf4(),

@@ -2,6 +2,7 @@ package env
 
 import (
 	"log"
+	"runtime"
 
 	"fyne.io/fyne/v2/data/binding"
 )
@@ -22,4 +23,11 @@ func UpdateStatus(text string) {
 	if err != nil {
 		log.Println("Status error:", err)
 	}
+}
+
+func NullDevice() string {
+	if runtime.GOOS == "windows" {
+		return "NUL"
+	}
+	return "/dev/null"
 }

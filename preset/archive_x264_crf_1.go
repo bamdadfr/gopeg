@@ -10,8 +10,8 @@ func ArchiveX264Crf1() Preset {
 		Accept:      []string{},
 		Ext:         "mp4",
 		Suffix:      "archive_x264_crf_1",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-c:v", "libx264",
 				"-crf", "1",
@@ -28,7 +28,7 @@ func ArchiveX264Crf1() Preset {
 				"-ar", "48000",
 				"-b:a", "384k",
 				outputPath,
-			}
+			}}
 		},
 	}
 }

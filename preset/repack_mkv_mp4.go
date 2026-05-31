@@ -10,12 +10,12 @@ func RepackMkvMp4() Preset {
 		Accept:      []string{".mkv"},
 		Ext:         "mp4",
 		Suffix:      "repack_from_mkv",
-		Args: func(inputPath string, outputPath string) []string {
-			return []string{
+		Args: func(inputPath string, outputPath string) [][]string {
+			return [][]string{{
 				"-i", inputPath,
 				"-c", "copy",
 				outputPath,
-			}
+			}}
 		},
 	}
 }
