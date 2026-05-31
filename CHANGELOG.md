@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/bamdadfr/gopeg/compare/v1.13.1...v1.13.2) (2026-05-31)
+
+
+### Bug Fixes
+
+* use lossless audio codec for x264 10 bits ([0a1ffe4](https://github.com/bamdadfr/gopeg/commit/0a1ffe461e7999ae86255b2fc71c4e42c05dc036))
+
 ## [1.13.1](https://github.com/bamdadfr/gopeg/compare/v1.13.0...v1.13.1) (2026-05-31)
 
 
