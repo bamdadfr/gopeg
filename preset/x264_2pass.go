@@ -6,20 +6,20 @@ import (
 	"strconv"
 )
 
-func X264TwoPass(rate int) Preset {
-	rateSuffix := strconv.Itoa(rate) + "M"
+func X264TwoPass(rate int, fps int) Preset {
+	rateString := strconv.Itoa(rate) + "M"
+	fpsString := strconv.Itoa(fps) + "fps"
 
 	return Preset{
-		Name:        "x264 Two-Pass " + rateSuffix,
+		Name:        "x264 Two-Pass " + rateString + " " + fpsString,
 		Binary:      binary.Ffmpeg(),
-		Description: "30 fps lock",
+		Description: fpsString,
 		Ext:         "mp4",
-		Suffix:      "x264_2pass_" + rateSuffix,
+		Suffix:      "x264_2pass_" + rateString + "_" + fpsString,
 		Args: func(inputPath string, outputPath string) [][]string {
 			passLog := pathBaseName(inputPath)
 			maxRate := rate + 4
 			bufferSize := maxRate * 2
-			fps := 30
 
 			common := []string{
 				"-c:v", "libx264",

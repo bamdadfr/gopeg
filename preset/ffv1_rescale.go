@@ -10,19 +10,20 @@ func Ffv1Rescale(width int, height int, fps int) Preset {
 	w := strconv.Itoa(width)
 	h := strconv.Itoa(height)
 	rescaleString := w + "x" + h
-	filterString := "scale=" + w + ":" + h + ":flags=lanczos"
+	fpsString := strconv.Itoa(fps) + "fps"
+	filterArg := "scale=" + w + ":" + h + ":flags=lanczos"
 
 	return Preset{
-		Name:        "FFV1 " + rescaleString,
+		Name:        "FFV1" + " " + rescaleString + " " + fpsString,
 		Binary:      binary.Ffmpeg(),
 		Description: "Lossless. Rescale.",
 		Accept:      []string{},
 		Ext:         "mkv",
-		Suffix:      "ffv1_rescale_" + rescaleString,
+		Suffix:      "ffv1_rescale_" + rescaleString + "_" + fpsString,
 		Args: func(inputPath string, outputPath string) [][]string {
 			return [][]string{{
 				"-i", inputPath,
-				"-filter:v", filterString,
+				"-filter:v", filterArg,
 				"-c:v", "ffv1",
 				"-level", "3",
 				"-slicecrc", "1",

@@ -39,10 +39,10 @@ func List() []Preset {
 		X264TenBits(12),
 		X264TenBits(16),
 		// x264 VBR 2 pass
-		X264TwoPass(8),
-		X264TwoPass(10),
-		X264TwoPass(12),
-		X264TwoPass(20),
+		X264TwoPass(8, 30),
+		X264TwoPass(10, 30),
+		X264TwoPass(12, 30),
+		X264TwoPass(20, 30),
 		// repacks
 		RepackMkvMp4(),
 		// video2x interpolation
