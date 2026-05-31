@@ -7,6 +7,8 @@
 - [x] extract to helpers for presets args
 - [ ] allow to stop queue
 - [ ] improve UI reactivity and loop
+- [ ] text filter for presets and pipelines
+- [ ] allow appending while queue is running
 
 ## from github issues
 
