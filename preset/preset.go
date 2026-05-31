@@ -22,39 +22,44 @@ type Preset struct {
 
 func List() []Preset {
 	presets := []Preset{
-		// archives lossless
-		ArchiveFfv1(),
-		ArchiveFfv1Loop3(),
-		ArchiveFfv1Loop4(),
-		// archives x264
-		ArchiveX264Crf1(),
-		ArchiveX264Crf4(),
-		ArchiveX264Crf8(),
-		ArchiveX264Crf10(),
-		ArchiveX264Crf12(),
-		ArchiveX264Crf16(),
-		// archives x264 2 passes
-		ArchiveX264TwoPass(),
-		// archives x264 10 bits
-		ArchiveX26410bitsCrf1(),
-		ArchiveX26410bitsCrf4(),
-		ArchiveX26410bitsCrf8(),
-		ArchiveX26410bitsCrf12(),
-		ArchiveX26410bitsCrf16(),
+		// ffv1
+		ffv1(),
+		ffv1Loop(3),
+		ffv1Loop(4),
+		// x264 CBR
+		x264(1),
+		x264(4),
+		x264(8),
+		x264(10),
+		x264(12),
+		x264(16),
+		// x264 CBR 10 bits
+		x264TenBits(1),
+		x264TenBits(4),
+		x264TenBits(8),
+		x264TenBits(12),
+		x264TenBits(16),
+		// x264 VBR 2 pass
+		x264TwoPass(8),
+		x264TwoPass(10),
+		x264TwoPass(12),
+		x264TwoPass(20),
 		// repacks
-		RepackMkvMp4(),
+		repackMkvMp4(),
 		// instagram
-		InstagramV1Vertical(),
-		InstagramV2Vertical(),
-		InstagramV2Square(),
-		InstagramV3Vbr1PremiereVertical(),
-		InstagramV3Vbr1PremiereSquare(),
+		instagramV1Vertical(),
+		instagramV2Vertical(),
+		instagramV2Square(),
+		instagramV3Vbr1PremiereVertical(),
+		instagramV3Vbr1PremiereSquare(),
 		// video2x interpolation
-		Video2xRife4x(),
-		Video2xRife5x(),
-		Video2xRife6x(),
+		video2xRife(2),
+		video2xRife(3),
+		video2xRife(4),
+		video2xRife(5),
+		video2xRife(6),
 		// video2x upscale
-		Video2xUpscale4x(),
+		video2xUpscale4x(),
 	}
 
 	slices.SortFunc(presets, func(a, b Preset) int {

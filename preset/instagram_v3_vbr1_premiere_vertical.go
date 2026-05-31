@@ -2,7 +2,7 @@ package preset
 
 import "gopeg/binary"
 
-func InstagramV3Vbr1PremiereVertical() Preset {
+func instagramV3Vbr1PremiereVertical() Preset {
 	return Preset{
 		Name:        "Instagram v3 VBR1 Premiere Vertical",
 		Binary:      binary.Ffmpeg(),

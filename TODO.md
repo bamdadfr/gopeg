@@ -4,8 +4,8 @@
 - [x] exit all jobs on quit
 - [x] add multi pass rendering
 - [x] add runner error handling
+- [x] extract to helpers for presets args
 - [ ] allow to stop queue
-- [ ] extract to helpers for presets args
 - [ ] improve UI reactivity and loop
 
 ## from github issues

@@ -2,7 +2,7 @@ package preset
 
 import "gopeg/binary"
 
-func RepackMkvMp4() Preset {
+func repackMkvMp4() Preset {
 	return Preset{
 		Name:        "Repack MKV to MP4",
 		Binary:      binary.Ffmpeg(),

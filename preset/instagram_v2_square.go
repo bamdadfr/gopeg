@@ -2,7 +2,7 @@ package preset
 
 import "gopeg/binary"
 
-func InstagramV2Square() Preset {
+func instagramV2Square() Preset {
 	return Preset{
 		Name:        "Instagram v2 CBR Square",
 		Binary:      binary.Ffmpeg(),
