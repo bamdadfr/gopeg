@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func video2xRife(factor int) Preset {
+func Video2xRife(factor int) Preset {
 	factorString := strconv.Itoa(factor) + "x"
 
 	return Preset{

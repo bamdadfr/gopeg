@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func x264TwoPass(rate int) Preset {
+func X264TwoPass(rate int) Preset {
 	rateSuffix := strconv.Itoa(rate) + "M"
 
 	return Preset{

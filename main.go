@@ -4,6 +4,7 @@ import (
 	"context"
 	"gopeg/binary"
 	"gopeg/env"
+	"gopeg/pipeline"
 	"gopeg/queue"
 	"gopeg/ui"
 
@@ -18,9 +19,10 @@ func main() {
 
 	binary.Init()
 	presets := preset.List()
+	pipelines := pipeline.List()
 
 	q := queue.NewQueue(ctx)
-	w := ui.Init(presets, q)
+	w := ui.Init(q, presets, pipelines)
 
 	w.SetCloseIntercept(func() {
 		cancel()

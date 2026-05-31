@@ -2,7 +2,7 @@ package preset
 
 import "gopeg/binary"
 
-func video2xUpscale4x() Preset {
+func Video2xUpscale4x() Preset {
 	return Preset{
 		Name:        "Video2X upscale 4x",
 		Binary:      binary.Video2x(),

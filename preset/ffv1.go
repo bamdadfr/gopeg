@@ -2,7 +2,7 @@ package preset
 
 import "gopeg/binary"
 
-func ffv1() Preset {
+func Ffv1() Preset {
 	return Preset{
 		Name:        "FFV1",
 		Binary:      binary.Ffmpeg(),

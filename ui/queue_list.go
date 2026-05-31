@@ -49,7 +49,9 @@ func CreateQueue(q *queue.Queue) *fyne.Container {
 			t3 := c.Objects[2].(*widget.Label)
 
 			var icon string
-			if job.IsDone {
+			if job.HasError {
+				icon = env.Icons["error"]
+			} else if job.IsDone {
 				icon = env.Icons["success"]
 			} else if job.IsRunning {
 				icon = env.Icons["play"]

@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func ffv1Loop(loop int) Preset {
+func Ffv1Loop(loop int) Preset {
 	loopString := strconv.Itoa(loop)
 
 	return Preset{

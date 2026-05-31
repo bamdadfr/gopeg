@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func x264TenBits(crf int) Preset {
+func X264TenBits(crf int) Preset {
 	crfString := strconv.Itoa(crf)
 	desc := "10 bits. Constant bitrate."
 

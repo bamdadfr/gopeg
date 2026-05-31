@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func x264(crf int) Preset {
+func X264(crf int) Preset {
 	crfSuffix := strconv.Itoa(crf)
 
 	return Preset{
