@@ -9,6 +9,7 @@
 - [ ] improve UI reactivity and loop
 - [ ] text filter for presets and pipelines
 - [ ] allow appending while queue is running
+- [ ] add macos build
 
 ## from github issues
 
