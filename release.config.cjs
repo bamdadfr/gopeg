@@ -11,7 +11,11 @@ module.exports = {
     [
       "@semantic-release/github",
       {
-        assets: ["packages/gopeg", "packages/gopeg_x64.exe"],
+        assets: [
+          "packages/gopeg",
+          "packages/gopeg_x64.exe",
+          "packages/gopeg_macos",
+        ],
       },
     ],
     [
