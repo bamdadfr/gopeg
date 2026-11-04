@@ -14,7 +14,7 @@
 - [ ] fix: lock buttons in queue tab when it's running and display stop button
 - [x] feat: add pipeline tab to compose preset sequence for given file (outputs
       feeding their next inputs)
-- [ ] feat: affix operating system and version to binaries
+- [x] feat: affix operating system and version to binaries
 - [ ] feat: add files tab
 - [ ] feat: suggest to write in filename with in progress tag then rename at
       the end when job is done
