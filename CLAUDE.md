@@ -79,10 +79,10 @@ When the work is done:
 
    ```
    git push -u origin HEAD
-   tea pr create --base claude --title "<title>"
+   gh pr create --base claude --title "<title>" --body "<body>"
    ```
 
-   `--base` falls back to the repo default branch, so it is never optional. `--head` defaults to the current branch, so run this from inside the worktree.
+   `--base` falls back to the repo default branch, so it is never optional. `--head` defaults to the current branch, so run this from inside the worktree. `--body` is required when `gh` runs non-interactively.
 
 3. Report the pull request URL, then stay in the worktree.
 4. Act on the next instruction:
@@ -97,8 +97,8 @@ work in the branch.
 
 Merging and cleaning up, in order:
 
-1. `tea pr merge <index>`
-2. `git push origin --delete <branch>` - `tea` leaves the remote branch behind.
+1. `gh pr merge <number> --merge` - pass the method flag, `gh` prompts for it otherwise. Don't pass `--delete-branch`: it also tries to switch and delete the local branch, which fights the worktree.
+2. `git push origin --delete <branch>` - `gh` leaves the remote branch behind. Skip if the repo auto-deletes head branches and it is already gone.
 3. Delete the worktree and the local branch:
    - Verify the merge landed:
      `git fetch origin && git merge-base --is-ancestor <sha> origin/claude`
