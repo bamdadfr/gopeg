@@ -1,5 +1,7 @@
 # TODO
 
+## previous
+
 - [x] UI buttons reactive to queue state
 - [x] exit all jobs on quit
 - [x] add multi pass rendering
@@ -9,10 +11,6 @@
 - [ ] improve UI reactivity and loop
 - [ ] text filter for presets and pipelines
 - [ ] allow appending while queue is running
-- [ ] add macos build
-
-## from github issues
-
 - [ ] fix: lock buttons in queue tab when it's running and display stop button
 - [x] feat: add pipeline tab to compose preset sequence for given file (outputs
       feeding their next inputs)
@@ -22,3 +20,7 @@
       the end when job is done
 - [ ] feat: add settings page with sound alert on queue end
 - [ ] feat(settings): add pipeline checkbox to keep or purge intermediary files
+
+## 20261104
+
+- [ ] add macos build
