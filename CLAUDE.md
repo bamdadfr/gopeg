@@ -67,19 +67,19 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 
 ## 5. Worktree Isolation
 
-**Never edit the main checkout. Always branch from `claude`.**
+**Never edit the main checkout. Always branch from `dev`.**
 
 - Call `EnterWorktree` before the first file edit of any task, naming it `worktree-claude-<topic>`. The name becomes the branch name, so the prefix carries through to the remote.
-- Immediately after entering, run `git fetch origin && git reset --hard origin/claude` - the default base ref is `origin/main`, which is not what this project wants.
+- Immediately after entering, run `git fetch origin && git reset --hard origin/dev` - the default base ref is `origin/main`, which is not what this project wants.
 
 When the work is done:
 
 1. Commit.
-2. Push the branch, then open the pull request against `claude`:
+2. Push the branch, then open the pull request against `dev`:
 
    ```
    git push -u origin HEAD
-   gh pr create --base claude --title "<title>" --body "<body>"
+   gh pr create --base dev --title "<title>" --body "<body>"
    ```
 
    `--base` falls back to the repo default branch, so it is never optional. `--head` defaults to the current branch, so run this from inside the worktree. `--body` is required when `gh` runs non-interactively.
@@ -101,14 +101,23 @@ Merging and cleaning up, in order:
 2. `git push origin --delete <branch>` - `gh` leaves the remote branch behind. Skip if the repo auto-deletes head branches and it is already gone.
 3. Delete the worktree and the local branch:
    - Verify the merge landed:
-     `git fetch origin && git merge-base --is-ancestor <sha> origin/claude`
+     `git fetch origin && git merge-base --is-ancestor <sha> origin/dev`
    - `ExitWorktree` with `action: "remove"` and `discard_changes: true`. Without
      the flag it refuses — expected, the merge is on the remote, not on local
-     `claude`. Never pass the flag before the check above.
+     `dev`. Never pass the flag before the check above.
    - Confirm nothing survived:
      `git for-each-ref --format='%(refname)' | grep <branch>`
      If it prints anything, `git branch -D <branch>`.
-4. Back in the main checkout, `git pull` so `claude` includes the merge.
+4. Back in the main checkout, `git pull` so `dev` includes the merge.
+
+### In cloud sessions
+
+The workflow above applies, with these differences:
+
+- Ignore the session's assigned `claude/<name>` branch; work on `worktree-claude-<topic>` as above.
+- `gh` is not available. Open, read and merge pull requests with the GitHub MCP tools instead.
+- Branch deletion is blocked by the cloud GitHub proxy. Skip `git push origin --delete <branch>` and tell the user which remote branch to delete, unless GitHub already removed it.
+- The container is reclaimed after inactivity. If the worktree is missing when work resumes, recreate it from `origin/<branch>` before continuing.
 
 ## 6. TODO file
 
