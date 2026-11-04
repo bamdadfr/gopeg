@@ -23,4 +23,4 @@
 
 ## 20261104
 
-- [ ] add macos build
+- [x] add macos build
