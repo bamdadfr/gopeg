@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/bamdadfr/gopeg/compare/v1.13.2...v1.14.0) (2026-11-04)
+
+
+### Features
+
+* add macos build ([45ab5cf](https://github.com/bamdadfr/gopeg/commit/45ab5cf4491806eb0afb57837868da6bdd67360b))
+
 ## [1.13.2](https://github.com/bamdadfr/gopeg/compare/v1.13.1...v1.13.2) (2026-05-31)
 
 
