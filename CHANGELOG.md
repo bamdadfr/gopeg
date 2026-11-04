@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/bamdadfr/gopeg/compare/v1.14.0...v1.15.0) (2026-11-04)
+
+
+### Features
+
+* affix operating system and version to release binaries ([9ea1112](https://github.com/bamdadfr/gopeg/commit/9ea11123c03ed908b95d98663021b14aba7a9050))
+
 # [1.14.0](https://github.com/bamdadfr/gopeg/compare/v1.13.2...v1.14.0) (2026-11-04)
 
 
