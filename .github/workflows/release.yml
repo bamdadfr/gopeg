@@ -3,31 +3,11 @@ on:
   push:
     branches: [main]
 jobs:
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-go@main
-        with:
-          go-version: '1.24'
-      - run: ./build.sh
-      - uses: actions/upload-artifact@v4
-        with:
-          name: gopeg_macos
-          path: packages/gopeg_macos
-  release:
-    needs: build-macos
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - run: sudo apt install -y libgl1-mesa-dev xorg-dev libxxf86vm-dev # X11 headers
-      - run: sudo apt install -y gcc-mingw-w64-x86-64 # C cross compiler for windows
       - uses: actions/checkout@main
-        with:
-          token: ${{ secrets.PAT }}
-          persist-credentials: true
-      - uses: actions/setup-node@main
-        with:
-          node-version: '20'
       - uses: actions/setup-go@main
         with:
           go-version: '1.24'
@@ -36,13 +16,63 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-          key: go-build-${{ hashFiles('go.sum') }}
-      - run: ./build.sh
+          key: go-build-linux-${{ hashFiles('go.sum') }}
+      - run: ./build.sh linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-linux
+          path: packages/gopeg
+
+  build-windows:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt install -y gcc-mingw-w64-x86-64 # C cross compiler for windows
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: '1.24'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: go-build-windows-${{ hashFiles('go.sum') }}
+      - run: ./build.sh windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-windows
+          path: packages/gopeg_x64.exe
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: '1.24'
+      - run: ./build.sh macos
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-macos
+          path: packages/gopeg_macos
+
+  release:
+    needs: [build-linux, build-windows, build-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+        with:
+          token: ${{ secrets.PAT }}
+          persist-credentials: true
+      - uses: actions/setup-node@main
+        with:
+          node-version: '20'
       - uses: actions/download-artifact@v4
         with:
-          name: gopeg_macos
+          pattern: gopeg-*
           path: packages
-      - run: chmod +x packages/gopeg_macos # artifacts drop the executable bit
+          merge-multiple: true
+      - run: chmod +x packages/gopeg packages/gopeg_macos # artifacts drop the executable bit
       - run: |
           npm install -g \
             semantic-release \
