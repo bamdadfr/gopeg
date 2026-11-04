@@ -1,0 +1,61 @@
+name: build
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+  workflow_dispatch: # run on any branch from the actions tab
+  workflow_call: # reused by release.yml
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt install -y libgl1-mesa-dev xorg-dev libxxf86vm-dev # X11 headers
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: '1.24'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: go-build-linux-${{ hashFiles('go.sum') }}
+      - run: ./build.sh linux
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-linux
+          path: packages/gopeg
+
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt install -y gcc-mingw-w64-x86-64 # C cross compiler for windows
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: '1.24'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: go-build-windows-${{ hashFiles('go.sum') }}
+      - run: ./build.sh windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-windows
+          path: packages/gopeg_x64.exe
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: '1.24'
+      - run: ./build.sh macos
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gopeg-macos
+          path: packages/gopeg_macos
